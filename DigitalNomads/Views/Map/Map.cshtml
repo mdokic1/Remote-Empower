@@ -52,7 +52,6 @@
                 <div class="form-group">
                     <input id="lat" name="lat" type="hidden" value="" />
                     <input id="lon" name="lon" type="hidden" value="" />
-                    <input id="btnUlazak" type="submit" class="btn btn-secondary btn-lg" value="&#xf1b9 &#xf090" />
                 </div>
             </form>
             <button id="btnClearRoute" type="button" class="btn btn-danger btn-lg" onclick="removeRoute()">
@@ -104,29 +103,78 @@
 
                 }
 
+        }
+
+        function calculateAndShowRoute() {
+                locations = @Html.Raw(ViewBag.Markeri);
+                var positionOptions = {
+                    enableHighAccuracy: true,
+                    maximumAge: 500
+                };
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        window.directionsService = new google.maps.DirectionsService();
+                        window.directionsDisplay = new google.maps.DirectionsRenderer();
+
+                        var najbliziLat, najbliziLong, request;
+
+                            najbliziLat = locations[0].lat;
+                            najbliziLong = locations[0].long;
+
+                            var minDistance = distanceBetween(position.coords.latitude, position.coords.longitude, najbliziLat, najbliziLong);
+                            for (var i = 1; i < locations.length; i++) {
+                                var nthMinDistance = distanceBetween(position.coords.latitude, position.coords.longitude, locations[i].lat, locations[i].long);
+                                if (nthMinDistance < minDistance) {
+                                    minDistance = nthMinDistance;
+                                    najbliziLat = locations[i].lat;
+                                    najbliziLong = locations[i].long;
+
+                                }
+                            }
+
+                                request = {
+                                    origin: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                                    destination: new google.maps.LatLng(najbliziLat, najbliziLong),
+                                    travelMode: 'DRIVING'
+                                }
+                                odredisniLat = najbliziLat;
+                                odredisniLon = najbliziLong;
+
+                        document.getElementById("lat").value = odredisniLat;
+                        document.getElementById("lon").value = odredisniLon;
+
+                        directionsDisplay.setMap(map);
+                        directionsService.route(request, (result, status) => {
+                            if (status == 'OK') {
+                                directionsDisplay.setDirections(result);
+                            }
+                        });
+
+                    });
+                }
+
             }
 
+            function removeRoute() {
+                window.directionsDisplay.setDirections({ routes: [] });
 
+            }
+
+            function distanceBetween(lat1, lon1, lat2, lon2) {
+                const R = 6371e3;
+                const fi1 = lat1 * Math.PI / 180;
+                const fi2 = lat2 * Math.PI / 180;
+                const deltaFi = (lat2 - lat1) * Math.PI / 180;
+                const deltaLambda = (lon2 - lon1) * Math.PI / 180;
+                const x = deltaLambda * Math.cos((fi1 + fi2) / 2);
+                const y = deltaFi;
+                return Math.sqrt(x * x + y * y) * R;
+            }
 
     </script>
 
 
-
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    @*<script type="text/javascript">
-            $(function () {
-                $('#btnUlazak').click(function () {
-                    //$.post("/EParking/SpasiKoordinate", {
-                    //    lat: odredisniLat,
-                    //    lon: odredisniLon
-                    //});
-                    $('#lat').attr('value', odredisniLat);
-                    $('#lon').attr('value', odredisniLon);
-                });
-            });
-        </script>*@
-
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd7K5-Z6imkbJEje_G9aPqEL65uUiOFfc&callback=initMap">
@@ -138,3 +186,4 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
+

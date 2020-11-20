@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-2\\DigitalNomads\\DigitalNomads.csproj": {}
+    "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-3\\DigitalNomads\\DigitalNomads.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-2\\DigitalNomads\\DigitalNomads.csproj": {
+    "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-3\\DigitalNomads\\DigitalNomads.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-2\\DigitalNomads\\DigitalNomads.csproj",
+        "projectUniqueName": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-3\\DigitalNomads\\DigitalNomads.csproj",
         "projectName": "DigitalNomads",
-        "projectPath": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-2\\DigitalNomads\\DigitalNomads.csproj",
+        "projectPath": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-3\\DigitalNomads\\DigitalNomads.csproj",
         "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-2\\DigitalNomads\\obj\\",
+        "outputPath": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-3\\DigitalNomads\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",

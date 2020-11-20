@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0GGhsFAWIQ8eJrk24hZtZmoIdueWfSj246ndS4egyI2uhUSTAfqbsm/tG7uZ8xzTcF7uFRZsTRT6oTx1ucPyIw==",
+  "dgSpecHash": "aTAasAPg/D77n/nthdAC0SlWcc7UZLUSfZHTDSIXI1Etz2DDB70SsLWDTyV1o6dN32OaLpDlyOmNkY7gjoSl9Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-2\\DigitalNomads\\DigitalNomads.csproj",
+  "projectFilePath": "C:\\Users\\Korisnik\\Source\\Repos\\CtrlAltDefeat-3\\DigitalNomads\\DigitalNomads.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.4\\microsoft.aspnetcore.cryptography.internal.3.1.4.nupkg.sha512",
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.4\\microsoft.aspnetcore.cryptography.keyderivation.3.1.4.nupkg.sha512",
