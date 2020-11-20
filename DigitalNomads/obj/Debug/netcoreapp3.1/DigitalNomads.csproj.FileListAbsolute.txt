@@ -72,3 +72,17 @@ C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\n
 C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.csproj.CopyComplete
 C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\staticwebassets\DigitalNomads.StaticWebAssets.Manifest.cache
 C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\staticwebassets\DigitalNomads.StaticWebAssets.xml
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.deps.json
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.runtimeconfig.json
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.runtimeconfig.dev.json
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.dll
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.pdb
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.Views.dll
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\bin\Debug\netcoreapp3.1\DigitalNomads.Views.pdb
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.csproj.CoreCompileInputs.cache
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.Views.pdb
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.dll
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.pdb
+C:\Users\38760\OneDrive\Documents\GitHub\CtrlAltDefeat\DigitalNomads\obj\Debug\netcoreapp3.1\DigitalNomads.genruntimeconfig.cache
