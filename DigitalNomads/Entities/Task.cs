@@ -13,6 +13,6 @@ namespace DigitalNomads.Entities
         public DateTime Deadline { get; set; }
         public string Description { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public Account User { get; set; }
     }
 }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DigitalNomads.Entities
 {
-    public class User : IdentityUser
+    public class Account
     {
+        public string UserId { get; set; }
+        public virtual IdentityUser User { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Lat { get; set; }
