@@ -1,0 +1,23 @@
+﻿@{
+
+}
+<html>
+<body>
+    <table>
+        <tbody>
+            @foreach (var item in Model.Tasks)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.IsFinished
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
