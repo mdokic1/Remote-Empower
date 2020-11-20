@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\selma\\Source\\Repos\\CtrlAltDefeat\\DigitalNomads\\DigitalNomads.csproj": {}
+    "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\DigitalNomads.csproj": {}
   },
   "projects": {
-    "C:\\Users\\selma\\Source\\Repos\\CtrlAltDefeat\\DigitalNomads\\DigitalNomads.csproj": {
+    "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\DigitalNomads.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\selma\\Source\\Repos\\CtrlAltDefeat\\DigitalNomads\\DigitalNomads.csproj",
+        "projectUniqueName": "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\DigitalNomads.csproj",
         "projectName": "DigitalNomads",
-        "projectPath": "C:\\Users\\selma\\Source\\Repos\\CtrlAltDefeat\\DigitalNomads\\DigitalNomads.csproj",
-        "packagesPath": "C:\\Users\\selma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\selma\\Source\\Repos\\CtrlAltDefeat\\DigitalNomads\\obj\\",
+        "projectPath": "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\DigitalNomads.csproj",
+        "packagesPath": "C:\\Users\\Kanita\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\selma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kanita\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,12 +72,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -83,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
