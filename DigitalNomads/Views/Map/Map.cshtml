@@ -1,0 +1,140 @@
+﻿<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 800px;
+            width: 100%;
+        }
+
+        .container-fluid {
+            position: relative;
+        }
+
+        #btnRoute {
+            position: absolute;
+            top: 120px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+        }
+
+        #btnClearRoute {
+            position: absolute;
+            top: 350px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+        }
+
+        #btnUlazak {
+            position: absolute;
+            top: 235px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+            font-family: FontAwesome;
+            font-size: 25px;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="map"></div>
+            <button id="btnRoute" type="button" class="btn btn-secondary btn-lg" onclick="calculateAndShowRoute()">
+                <i class="fas fa-route fa-2x"></i>
+            </button>
+            <!--Hidden fileds so I can send data-->
+            <form asp-action="Map" method="post">
+                <div class="form-group">
+                    <input id="lat" name="lat" type="hidden" value="" />
+                    <input id="lon" name="lon" type="hidden" value="" />
+                    <input id="btnUlazak" type="submit" class="btn btn-secondary btn-lg" value="&#xf1b9 &#xf090" />
+                </div>
+            </form>
+            <button id="btnClearRoute" type="button" class="btn btn-danger btn-lg" onclick="removeRoute()">
+                <i class="fas fa-trash-alt fa-2x"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+            var locations = @Html.Raw(ViewBag.Markeri);
+            var odredisniLat, odredisniLon;
+            var map;
+            // Initialize and add the map
+            function initMap() {
+               // The location of Sarajevo
+                var sarajevo = { lat: 43.8563, lng: 18.4131 };
+                // The map, centered at Sarajevo
+                map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 15, center: sarajevo });
+
+                var parkingIcon =
+                    'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+
+                var infoObj = [];
+                for (var i = 0; i < locations.length; i++) {
+                    var contentString = '<h3>' + 'Naziv: ' + locations[i].name + '</h3> ' +
+                        '<h3>' + 'Adresa: ' + locations[i].address + '</h3> ' +
+                        '<h3>' + 'Radno vrijeme: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ';
+
+                    var myLatLng = new google.maps.LatLng(locations[i].lat, locations[i].long);
+                    const marker = new google.maps.Marker({
+                        position: myLatLng,
+                        icon: parkingIcon,
+                        map: map
+                    });
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+                    marker.addListener('click', function () {
+                        //zatvaranje starog info prozora
+                        if (infoObj.length > 0) {
+                            infoObj[i].set("marker", null);
+                            infoObj[i].close();
+                            infoObj[i].length = 0;
+                        }
+                        infoWindow.open(marker.get('map'), marker);
+                        infoObj[i] = infoWindow;
+                    });
+
+                }
+
+            }
+
+
+
+    </script>
+
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    @*<script type="text/javascript">
+            $(function () {
+                $('#btnUlazak').click(function () {
+                    //$.post("/EParking/SpasiKoordinate", {
+                    //    lat: odredisniLat,
+                    //    lon: odredisniLon
+                    //});
+                    $('#lat').attr('value', odredisniLat);
+                    $('#lon').attr('value', odredisniLon);
+                });
+            });
+        </script>*@
+
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd7K5-Z6imkbJEje_G9aPqEL65uUiOFfc&callback=initMap">
+    </script>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
