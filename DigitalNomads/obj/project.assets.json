@@ -2490,11 +2490,12 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
+      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -2754,11 +2755,12 @@
       ]
     },
     "System.ComponentModel.TypeConverter/4.3.0": {
-      "sha512": "HZiP0DwTHJ+C+rdFqP47nBYUh5283kcwXIGY2zOVVhsJmVI/2tYiX2zNRdjRQRHsTox58Ydkec6h0pWSh8wAsw==",
+      "sha512": "16pQ6P+EdhcXzPiEK4kbA953Fu0MNG2ovxTZU81/qsCd1zPRsKc3uif5NgvllCY598k6bI0KUyKW8fanlfaDQg==",
       "type": "package",
       "path": "system.componentmodel.typeconverter/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5406,23 +5408,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\38760\\.nuget\\packages\\": {},
+    "C:\\Users\\Kanita\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\38760\\OneDrive\\Documents\\GitHub\\CtrlAltDefeat\\DigitalNomads\\DigitalNomads.csproj",
+      "projectUniqueName": "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\DigitalNomads.csproj",
       "projectName": "DigitalNomads",
-      "projectPath": "C:\\Users\\38760\\OneDrive\\Documents\\GitHub\\CtrlAltDefeat\\DigitalNomads\\DigitalNomads.csproj",
-      "packagesPath": "C:\\Users\\38760\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\38760\\OneDrive\\Documents\\GitHub\\CtrlAltDefeat\\DigitalNomads\\obj\\",
+      "projectPath": "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\DigitalNomads.csproj",
+      "packagesPath": "C:\\Users\\Kanita\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kanita\\source\\repos\\CtrlAltDefeatt\\DigitalNomads\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\38760\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kanita\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5489,7 +5491,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

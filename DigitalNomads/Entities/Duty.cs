@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DigitalNomads.Entities
 {
-    public class Task
+    public class Duty
     {
         public int Id { get; set; }
         public string Title { get; set; }

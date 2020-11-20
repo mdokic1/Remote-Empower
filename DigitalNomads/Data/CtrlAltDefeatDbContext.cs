@@ -13,7 +13,7 @@ namespace DigitalNomads.Data
         public DbSet<Meditation> Meditations { get; set; }
         public DbSet<MeditationWords> MeditationWords { get; set; }
         public DbSet<Motivation> Motivations { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Duty> Tasks { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Account> Accounts { get; set; }
 
