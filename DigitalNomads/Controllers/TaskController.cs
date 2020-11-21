@@ -30,9 +30,9 @@ namespace DigitalNomads.Controllers
 
         public async Task<IActionResult> AllTasks()
         {
-            TaskList list = await GetAllTasksByIdAsync();
+            TaskList lists = await GetAllTasksByIdAsync();
 
-            return View(list);
+            return View(lists);
         }
 
         public async Task<int> GetAccountIdByUserIdAsync(string UserId)
@@ -54,25 +54,31 @@ namespace DigitalNomads.Controllers
 
         public async Task<TaskList> GetAllTasksByIdAsync ()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int accId = await GetAccountIdByUserIdAsync(userId);
+            //var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //int accId = await GetAccountIdByUserIdAsync(userId);
 
-            IList<TaskRes> res = await _dbContext.Tasks
-                .Where(t => t.UserId == accId)
-                .Select(t => new TaskRes
-                {
-                    Id = t.Id,
-                    Title = t.Title,
-                    IsFinished = t.IsFinished,
-                    Deadline = t.Deadline,
-                    Description = t.Description,
-                    UserId = t.UserId
-                }).ToListAsync();
+            //IList<TaskRes> res = await _dbContext.Tasks
+            //    .Where(t => t.UserId == accId)
+            //    .Select(t => new TaskRes
+            //    {
+            //        Id = t.Id,
+            //        Title = t.Title,
+            //        IsFinished = t.IsFinished,
+            //        Deadline = t.Deadline,
+            //        Description = t.Description,
+            //        UserId = t.UserId
+            //    }).ToListAsync();
 
-            return new TaskList { Tasks = res };
+            IList<TaskRes> finished = await GetAllFinishedTasksByIdAsync();
+            IList<TaskRes> unfinished = await GetAllUnfinishedTasksByIdAsync();
+
+            return new TaskList {
+                FinishedTasks = finished,
+                UnfinishedTasks = unfinished
+            };
         }
 
-        public async Task<TaskList> GetAllFinishedTasksByIdAsync()
+        public async Task<IList<TaskRes>> GetAllFinishedTasksByIdAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             int accId = await GetAccountIdByUserIdAsync(userId);
@@ -88,13 +94,11 @@ namespace DigitalNomads.Controllers
                     Description = t.Description,
                     UserId = t.UserId
                 }).ToListAsync();
-            return new TaskList
-            {
-                Tasks = res
-            };
+
+            return res;
         }
 
-        public async Task<TaskList> GetAllUnfinishedTasksByIdAsync()
+        public async Task<IList<TaskRes>> GetAllUnfinishedTasksByIdAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             int accId = await GetAccountIdByUserIdAsync(userId);
@@ -110,10 +114,8 @@ namespace DigitalNomads.Controllers
                     Description = t.Description,
                     UserId = t.UserId
                 }).ToListAsync();
-            return new TaskList
-            {
-                Tasks = res
-            };
+
+            return res;
         }
 
         public async Task DeleteTaskAsync(int Id)

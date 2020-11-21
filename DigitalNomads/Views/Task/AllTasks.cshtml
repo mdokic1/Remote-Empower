@@ -4,9 +4,10 @@
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+        @@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 
         body {
-            color: #2c3e50;
+            color: #4A6D62;
             background: #ecf0f1;
             padding: 0 1em 1em;
         }
@@ -23,6 +24,10 @@
             margin: 0 0 0.5em;
             font-weight: normal;
             font-family: Poppins;
+        }
+
+        p {
+            font-family: Heebo;
         }
 
         input {
@@ -64,14 +69,14 @@
             -webkit-box-pack: justify;
             justify-content: space-between;
             padding: 1em;
-            background: #2c3e50;
+            background: #6C9A8B;
             font-weight: bold;
             cursor: pointer;
             /* Icon */
         }
 
         .tab-label:hover {
-            background: #1a252f;
+            background: #4A6D62;
         }
 
         .tab-label::after {
@@ -104,11 +109,11 @@
         }
 
         .tab-close:hover {
-            background: #1a252f;
+            background: #4A6D62;
         }
 
-        input:checked+.tab-label {
-            background: #1a252f;
+        input:checked + .tab-label {
+            background: #4A6D62;
         }
 
         input:checked+.tab-label::after {
@@ -129,39 +134,32 @@
         <div class="col">
             <h2>Unfinished</h2>
             <div class="tabs">
+                @for (int i = 0; i < Model.UnfinishedTasks.Count; i++)
+                {
                 <div class="tab">
-                    <input type="checkbox" id="chck1">
-                    <label class="tab-label" for="chck1">Item 1</label>
+                    <input type="checkbox" id=@i>
+                    <label class="tab-label" for=@i>@Model.UnfinishedTasks[i].Title</label>
                     <div class="tab-content">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum, reiciendis!
+                        <p><b>Deadline:</b> @Model.UnfinishedTasks[i].Deadline.ToString("HH:mm")</p>
+                        <p><b>Description:</b> @Model.UnfinishedTasks[i].Description</p>
                     </div>
                 </div>
-                <div class="tab">
-                    <input type="checkbox" id="chck2">
-                    <label class="tab-label" for="chck2">Item 2</label>
-                    <div class="tab-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, in!
-                    </div>
-                </div>
+                }
             </div>
         </div>
         <div class="col">
             <h2>Finished</h2>
             <div class="tabs">
-                <div class="tab">
-                    <input type="checkbox" id="chck3">
-                    <label class="tab-label" for="chck3">Item 1</label>
-                    <div class="tab-content">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum, reiciendis!
+                @for (int i = 0; i < Model.FinishedTasks.Count; i++)
+                {
+                    <div class="tab">
+                        <input type="checkbox" id=@Model.UnfinishedTasks.Count+@i>
+                        <label class="tab-label" for=@Model.UnfinishedTasks.Count+@i>@Model.FinishedTasks[i].Title</label>
+                        <div class="tab-content">
+                            <p><b>Description:</b> @Model.FinishedTasks[i].Description</p>
+                        </div>
                     </div>
-                </div>
-                <div class="tab">
-                    <input type="checkbox" id="chck4">
-                    <label class="tab-label" for="chck4">Item 2</label>
-                    <div class="tab-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, in!
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>

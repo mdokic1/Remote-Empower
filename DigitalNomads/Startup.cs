@@ -46,6 +46,7 @@ namespace DigitalNomads
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
             }
             else
             {
@@ -55,7 +56,6 @@ namespace DigitalNomads
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
