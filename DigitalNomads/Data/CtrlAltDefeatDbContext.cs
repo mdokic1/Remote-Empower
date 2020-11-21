@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using DigitalNomads.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,11 @@ namespace DigitalNomads.Data
         public CtrlAltDefeatDbContext(DbContextOptions<CtrlAltDefeatDbContext> options)
             : base(options)
         {
+        }
+
+        internal Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

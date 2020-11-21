@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DigitalNomads.Data;
 using DigitalNomads.Models.Task;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using DigitalNomads.Models.Account;
 using DigitalNomads.Entities;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalNomads.Controllers
 {
@@ -125,6 +124,12 @@ namespace DigitalNomads.Controllers
 
             _dbContext.Tasks.Remove(task);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task AddTaskAsync(Task task)
+        {
+              _dbContext.Add(task);
+              await _dbContext.SaveChangesAsync();
         }
 
         
