@@ -9,6 +9,7 @@ using DigitalNomads.Models.Account;
 using DigitalNomads.Entities;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DigitalNomads.Controllers
 {
@@ -134,5 +135,10 @@ namespace DigitalNomads.Controllers
             await _dbContext.SaveChangesAsync();
         }
 
+        public void ChangeTaskType (TaskRes task)
+        {
+            Console.WriteLine(task.Id + task.Title);
+            
+        }
     }
 }
