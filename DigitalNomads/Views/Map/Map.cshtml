@@ -162,6 +162,7 @@
         }
     </style>
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -215,7 +216,7 @@
 
                     </div>
                     <div class="modal-body">
-                        <form asp-controller="Map" asp-action="AddLocation" method="post">
+                        <form asp-controller="Map" asp-action="AddLocation" method="post" id="forma">
                             <table>
                                 <tr>
                                     <td>
@@ -254,11 +255,20 @@
                                         <label for="speed">Internet speed: </label>
                                     </td>
                                     <td>
-                                        <input type="text" name="speed" id="speed">
+                                        <input type="text" name="speed" id="Speed">
                                     </td>
                                 </tr>
-                                <input type="hidden" name="AddressLat" />
-                                <input type="hidden" name="AddressLong" />
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="addressLat"  id="AddressLat"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="addressLong" id="AddressLong"/>
+                                    </td>
+                                </tr>
+                                
                                 <tr colspan="2" align="center">
                                     <td>
                                         <input id="potvrdi" type="submit" value="Submit location">
@@ -466,17 +476,40 @@
             }
         }
 
+        
+
+        //function codeAddress() {
+        //    var address = document.getElementById('Address').value;
+        //    geocoder.geocode({ 'address': address }, function (results, status) {
+        //        if (status == 'OK') {
+        //            console.log("OK");
+        //            document.getElementById('AddressLat').value = results[0].geometry.location.lat;
+        //            document.getElementById('AddressLong').value = results[0].geometry.location.lng;
+        //            console.log(results[0].geometry.location.lat);
+        //            alert(results[0].geometry.location.lat + " " + results[0].geometry.location.lng);
+        //        } else {
+        //            alert('Geocode was not successful for the following reason: ' + status);
+        //        }
+        //    });
+        //};
+
         function codeAddress() {
-            var address = document.getElementById('Address').value;
-            geocoder.geocode({ 'address': address }, function (result, status) {
-                if (status == 'OK') {
-                    document.getElementById('AddressLat').value = results[0].geometry.location.lat;
-                    document.getElementById('AddressLong').value = results[0].geometry.location.long;
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: document.getElementById('Address').value,
+                    key: 'AIzaSyBd7K5-Z6imkbJEje_G9aPqEL65uUiOFfc'
                 }
-            });
+            })
+                .then(function (response) {
+                    document.getElementById('AddressLat').value = response.data.results[0].geometry.location.lat;
+                    document.getElementById('AddressLong').value = response.data.results[0].geometry.location.lng;
+                })
         }
+
+        document.getElementById("Start").onclick = function () {
+            codeAddress();
+        }
+        
 
     </script>
 

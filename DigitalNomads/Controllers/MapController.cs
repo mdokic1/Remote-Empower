@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -134,10 +135,23 @@ namespace DigitalNomads.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddLocation(string name, string address, DateTime start, DateTime end, string speed, string AddressLat, string AddressLong)
+        public async Task<IActionResult> AddLocation(string name, string address, DateTime start, DateTime end, string speed, String addressLat, String addressLong)
         {
-            Console.WriteLine("nesto");
-            return View("Map");
+            Place newPlace = new Place();
+            newPlace.Name = name;
+            newPlace.Address = address;
+            newPlace.Start = start;
+            newPlace.End = end;
+            newPlace.Lat = Double.Parse(addressLat, CultureInfo.InvariantCulture);
+            newPlace.Long = Double.Parse(addressLong, CultureInfo.InvariantCulture);
+
+            _context.Add(newPlace);
+            _context.SaveChanges();
+
+            return RedirectToAction("Map");
+
+            //Console.WriteLine("nesto");
+            //return View("Map");
         }
     }
 }
