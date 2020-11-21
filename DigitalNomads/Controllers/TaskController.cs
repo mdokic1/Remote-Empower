@@ -116,7 +116,9 @@ namespace DigitalNomads.Controllers
                     UserId = t.UserId
                 }).ToListAsync();
 
-            return res;
+            var sorted = res.OrderBy(t => t.Deadline).ToList();
+
+            return sorted;
         }
 
         public async Task DeleteTaskAsync(int Id)

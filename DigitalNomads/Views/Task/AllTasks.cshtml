@@ -373,7 +373,7 @@
                         <input class="tabovi" type="checkbox" id=@i>
                         <label class="tab-label" for=@i>@Model.UnfinishedTasks[i].Title</label>
                         <div class="tab-content">
-                            <p><b>Deadline:</b> @Model.UnfinishedTasks[i].Deadline.ToString("HH:mm")</p>
+                            <p><b>Deadline:</b> @Model.UnfinishedTasks[i].Deadline.ToString("dd/MM/yyyy HH:mm")</p>
                             <p><b>Description:</b> @Model.UnfinishedTasks[i].Description</p>
 
                             <form asp-controller="Task" asp-action="ChangeTaskType" method="post">
