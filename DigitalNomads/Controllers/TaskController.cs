@@ -132,11 +132,7 @@ namespace DigitalNomads.Controllers
               await _dbContext.SaveChangesAsync();
         }
 
-        
-
-
-
-
+       
 
     }
 }
