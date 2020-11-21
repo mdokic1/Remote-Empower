@@ -22,6 +22,7 @@ namespace DigitalNomads.Controllers
         {
             return View();
         }
+       
 
         public IActionResult Privacy()
         {
