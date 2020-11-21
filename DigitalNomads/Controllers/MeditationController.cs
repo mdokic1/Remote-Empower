@@ -42,6 +42,21 @@ namespace DigitalNomads.Controllers
         }
 
 
+
+        public async Task<IActionResult> OneMinuteMeditation()
+        {
+            IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
+            Random rnd = new Random();
+            int index = rnd.Next(res.Count);
+            MeditationRes meditationRes = res[index];
+            MeditationAndDurationModel model = new MeditationAndDurationModel
+            {
+                MeditationRes = meditationRes,
+                Seconds = 60
+            };
+            return View("MeditationRoom", model);
+        }
+
         public async Task<IActionResult> FiveMinutesMeditation()
         {
             IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
@@ -51,10 +66,27 @@ namespace DigitalNomads.Controllers
             MeditationAndDurationModel model = new MeditationAndDurationModel
             {
                 MeditationRes = meditationRes,
-                Minutes = 5
+                Seconds = 300
             };
-            return View(model);
+            return View("MeditationRoom", model);
         }
+
+        public async Task<IActionResult> TenMinutesMeditation()
+        {
+            IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
+            Random rnd = new Random();
+            int index = rnd.Next(res.Count);
+            MeditationRes meditationRes = res[index];
+            MeditationAndDurationModel model = new MeditationAndDurationModel
+            {
+                MeditationRes = meditationRes,
+                Seconds = 600
+            };
+            return View("MeditationRoom",model);
+        }
+
+
+
 
 
 
