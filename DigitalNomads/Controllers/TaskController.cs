@@ -126,12 +126,5 @@ namespace DigitalNomads.Controllers
             _dbContext.Tasks.Remove(task);
             await _dbContext.SaveChangesAsync();
         }
-
-        
-
-
-
-
-
     }
 }
