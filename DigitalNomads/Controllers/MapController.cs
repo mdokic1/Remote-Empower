@@ -1,9 +1,13 @@
 ﻿using DigitalNomads.Data;
 using DigitalNomads.Entities;
+using DigitalNomads.Models.Account;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DigitalNomads.Controllers
@@ -12,44 +16,119 @@ namespace DigitalNomads.Controllers
     {
         private readonly CtrlAltDefeatDbContext _context;
 
-        public MapController(CtrlAltDefeatDbContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public MapController(CtrlAltDefeatDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public IActionResult Map()
+
+        //public async Task<int> GetAccountIdByUserIdAsync(string UserId)
+        //{
+        //    AccountGetDetailsRes res = await _context.Accounts
+        //        .Where(a => a.UserId == UserId)
+        //        .Select(a => new AccountGetDetailsRes
+        //        {
+        //            Id = a.Id,
+        //            FirstName = a.FirstName,
+        //            LastName = a.LastName,
+        //            Lat = a.Lat,
+        //            Long = a.Long,
+        //            TeamId = a.TeamId
+
+        //        }).FirstOrDefaultAsync();
+
+        //    return res.Id;
+        //}
+
+        public async Task<IActionResult> MapAsync()
         {
             List<Place> places = _context.Places.ToList();
+            List<Account> accounts = _context.Accounts.ToList();
 
-
-
-            string markeri = "[";
+            string markeriLokacija = "[";
             int vel = 0;
             foreach (Place place in places)
             {
-                markeri += "{";
+                markeriLokacija += "{";
                 double lat = place.Lat;
                 double lng = place.Long;
-                markeri += String.Format("'lat': '{0}',", lat.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                markeri += String.Format("'long': '{0}',", lng.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                markeri += string.Format("'name': '{0}',", place.Name);
-                markeri += string.Format("'address': '{0}',", place.Address);
-                markeri += string.Format("'begin': '{0}',", place.Start.Hour);
-                markeri += string.Format("'end': '{0}'", place.End.Hour);
+                markeriLokacija += String.Format("'lat': '{0}',", lat.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                markeriLokacija += String.Format("'long': '{0}',", lng.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                markeriLokacija += string.Format("'name': '{0}',", place.Name);
+                markeriLokacija += string.Format("'address': '{0}',", place.Address);
+                markeriLokacija += string.Format("'begin': '{0}',", place.Start.Hour);
+                markeriLokacija += string.Format("'end': '{0}'", place.End.Hour);
                 if (vel < places.Count - 1)
                 {
-                    markeri += "},";
+                    markeriLokacija += "},";
                 }
                 else
                 {
-                    markeri += "}";
+                    markeriLokacija += "}";
                 }
                 vel++;
             }
-            markeri += "];";
-            ViewBag.Markeri = markeri;
+            markeriLokacija += "];";
+            ViewBag.MarkeriLokacija = markeriLokacija;
 
             ViewBag.Latitude = places.ElementAt(0).Lat.ToString(System.Globalization.CultureInfo.InvariantCulture);
             ViewBag.Longitude = places.ElementAt(0).Long.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // var userId = "3c23279c-d8bf-41c3-adb1-07bf3b1c9b44";
+
+            int teamId = 0;
+
+
+            foreach (Account account in accounts)
+            {
+                if (account.UserId.Equals(userId))
+                {
+                    teamId = account.TeamId;
+                    break;
+                }
+            }
+
+            string markeriTima = "[";
+            vel = 0;
+            int brojac = 0;
+
+            foreach (Account account in accounts)
+            {
+                if (account.TeamId == teamId && account.UserId != userId)
+                {
+                    brojac++;
+                }
+            }
+
+            foreach (Account account in accounts)
+            {
+                if (account.TeamId == teamId && account.UserId != userId)
+                {
+                    markeriTima += "{";
+                    double lat = account.Lat;
+                    double lng = account.Long;
+                    markeriTima += String.Format("'lat': '{0}',", lat.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    markeriTima += String.Format("'long': '{0}',", lng.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    markeriTima += string.Format("'firstname': '{0}',", account.FirstName);
+                    markeriTima += string.Format("'lastname': '{0}'", account.LastName);
+
+                    if (vel < brojac - 1)
+                    {
+                        markeriTima += "},";
+                    }
+                    else
+                    {
+                        markeriTima += "}";
+                    }
+                    vel++;
+                }
+            }
+
+            markeriTima += "];";
+            ViewBag.MarkeriTima = markeriTima;
 
             return View();
         }

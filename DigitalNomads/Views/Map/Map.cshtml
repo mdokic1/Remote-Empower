@@ -2,6 +2,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
         /* Set the size of the div element that contains the map */
+        body {
+            background-color: #575757;
+        }
+
         #map {
             height: 800px;
             width: 100%;
@@ -13,7 +17,7 @@
 
         #btnRoute {
             position: absolute;
-            top: 120px;
+            top: 350px;
             right: 25px;
             width: 100px;
             height: 100px;
@@ -21,20 +25,26 @@
 
         #btnClearRoute {
             position: absolute;
-            top: 350px;
+            top: 465px;
             right: 25px;
             width: 100px;
             height: 100px;
         }
 
-        #btnUlazak {
+        #btnAllLocations {
+            position: absolute;
+            top: 120px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+        }
+
+        #btnAllTeammates {
             position: absolute;
             top: 235px;
             right: 25px;
             width: 100px;
             height: 100px;
-            font-family: FontAwesome;
-            font-size: 25px;
         }
     </style>
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
@@ -54,16 +64,31 @@
                     <input id="lon" name="lon" type="hidden" value="" />
                 </div>
             </form>
+            <button id="btnAllLocations" type="button" class="btn btn-secondary btn-lg" onclick="showAllLocations()">
+                <i class="fas fa-search-location fa-2x"></i>
+            </button>
             <button id="btnClearRoute" type="button" class="btn btn-danger btn-lg" onclick="removeRoute()">
                 <i class="fas fa-trash-alt fa-2x"></i>
+            </button>
+            <button id="btnAllTeammates" type="button" class="btn btn-secondary btn-lg" onclick="showAllTeammates()">
+                <i class="fas fa-users fa-2x"></i>
             </button>
         </div>
     </div>
 
     <script>
-            var locations = @Html.Raw(ViewBag.Markeri);
+            var locations = @Html.Raw(ViewBag.MarkeriLokacija);
+            var teamLocations = @Html.Raw(ViewBag.MarkeriTima);
             var odredisniLat, odredisniLon;
-            var map;
+        var map;
+        var allMarkers = [];
+        function removeAllMarkers() {
+            for (var i = 0; i < allMarkers.length; i++) {
+                allMarkers[i].setMap(null);
+            }
+            allMarkers = [];
+        }
+
             // Initialize and add the map
             function initMap() {
                // The location of Sarajevo
@@ -72,41 +97,83 @@
                 map = new google.maps.Map(
                     document.getElementById('map'), { zoom: 15, center: sarajevo });
 
-                var parkingIcon =
-                    'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
-
-                var infoObj = [];
-                for (var i = 0; i < locations.length; i++) {
-                    var contentString = '<h3>' + 'Naziv: ' + locations[i].name + '</h3> ' +
-                        '<h3>' + 'Adresa: ' + locations[i].address + '</h3> ' +
-                        '<h3>' + 'Radno vrijeme: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ';
-
-                    var myLatLng = new google.maps.LatLng(locations[i].lat, locations[i].long);
-                    const marker = new google.maps.Marker({
-                        position: myLatLng,
-                        icon: parkingIcon,
-                        map: map
-                    });
-                    const infoWindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-                    marker.addListener('click', function () {
-                        //zatvaranje starog info prozora
-                        if (infoObj.length > 0) {
-                            infoObj[i].set("marker", null);
-                            infoObj[i].close();
-                            infoObj[i].length = 0;
-                        }
-                        infoWindow.open(marker.get('map'), marker);
-                        infoObj[i] = infoWindow;
-                    });
-
                 }
 
+        function showAllLocations() {
+            var locationIcon =
+                'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+
+
+            removeAllMarkers();
+
+            var infoObj = [];
+            for (var i = 0; i < locations.length; i++) {
+                var contentString = '<h3>' + 'Naziv: ' + locations[i].name + '</h3> ' +
+                    '<h3>' + 'Adresa: ' + locations[i].address + '</h3> ' +
+                    '<h3>' + 'Radno vrijeme: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ';
+
+                var myLatLng = new google.maps.LatLng(locations[i].lat, locations[i].long);
+                const marker = new google.maps.Marker({
+                    position: myLatLng,
+                    icon: locationIcon,
+                    map: map
+                    });
+
+                allMarkers.push(marker);
+                const infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function () {
+                    //zatvaranje starog info prozora
+                    if (infoObj.length > 0) {
+                        infoObj[i].set("marker", null);
+                        infoObj[i].close();
+                        infoObj[i].length = 0;
+                    }
+                    infoWindow.open(marker.get('map'), marker);
+                    infoObj[i] = infoWindow;
+                });
+
+            }
         }
 
+        function showAllTeammates() {
+            var locationIcon =
+                'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+
+            removeAllMarkers();
+            var infoObj = [];
+            for (var i = 0; i < teamLocations.length; i++) {
+                var contentString = '<h3>' + teamLocations[i].firstname + ' ' + teamLocations[i].lastname + '</h3> ';
+
+                var myLatLng = new google.maps.LatLng(teamLocations[i].lat, teamLocations[i].long);
+                const marker = new google.maps.Marker({
+                    position: myLatLng,
+                    icon: locationIcon,
+                    map: map
+                });
+
+                allMarkers.push(marker);
+                const infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function () {
+                    //zatvaranje starog info prozora
+                    if (infoObj.length > 0) {
+                        infoObj[i].set("marker", null);
+                        infoObj[i].close();
+                        infoObj[i].length = 0;
+                    }
+                    infoWindow.open(marker.get('map'), marker);
+                    infoObj[i] = infoWindow;
+                });
+
+            }
+        }
+
+
         function calculateAndShowRoute() {
-                locations = @Html.Raw(ViewBag.Markeri);
+                locations = @Html.Raw(ViewBag.MarkeriLokacija);
                 var positionOptions = {
                     enableHighAccuracy: true,
                     maximumAge: 500
