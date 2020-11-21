@@ -7,6 +7,7 @@ namespace DigitalNomads.Models.Task
 {
     public class TaskList
     {
-        public IList<TaskRes> Tasks { get; set; }
+        public IList<TaskRes> FinishedTasks { get; set; }
+        public IList<TaskRes> UnfinishedTasks { get; set; }
     }
 }

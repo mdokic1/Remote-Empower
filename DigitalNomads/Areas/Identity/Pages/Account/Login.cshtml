@@ -1,0 +1,68 @@
+﻿@page
+@model LoginModel
+
+@{
+	ViewData["Title"] = "Log in";
+	Layout = null;
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" asp-action="ShowCards" asp-controller="Show">
+                <h4>Welcome!</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email" ></label>
+                    <input asp-for="Input.Email" id="email" class="form-control" style="padding:5px;margin:0px 0px 5px 0px" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" style="padding:5px" id="pass" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="btn" onclick="Provjera()">Log in</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword" style="color:#7D695E;">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a href="#" onclick="RegLoad()" style="color:#7D695E;">Register as a new user</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    
+
+
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
+
+
+<style>
+	#btn{
+		background-color:#7D695E;
+		color:white;
+		font-size:13px;
+		padding:2px 30px;
+		border-radius:30px;
+		box-shadow:0 10px 40px rgba(0,0,0,0.16);	
+	}
+</style>

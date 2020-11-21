@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using DigitalNomads.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalNomads.Data
 {
-    public class CtrlAltDefeatDbContext : IdentityDbContext
+    public class CtrlAltDefeatDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Place> Places { get; set; }
         public DbSet<Meditation> Meditations { get; set; }
@@ -23,9 +24,12 @@ namespace DigitalNomads.Data
         {
         }
 
-        internal Task SaveChangesAsync()
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            throw new NotImplementedException();
+            base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
 }
