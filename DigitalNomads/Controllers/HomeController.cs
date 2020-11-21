@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DigitalNomads.Models;
 
+
 namespace DigitalNomads.Controllers
 {
     public class HomeController : Controller
@@ -22,6 +23,12 @@ namespace DigitalNomads.Controllers
         {
             return View();
         }
+        
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+       
 
         public IActionResult Privacy()
         {
