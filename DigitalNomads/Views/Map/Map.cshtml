@@ -1,5 +1,6 @@
 ﻿<head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @@import url('https://fonts.googleapis.com/css?family=Raleway');
         /* Set the size of the div element that contains the map */
@@ -17,6 +18,7 @@
             width: 100%;
             margin-top: 30px;
             margin-bottom: 30px;
+            zoom: 1; 
         }
 
         .container-fluid {
@@ -68,22 +70,102 @@
             border-color: #808184;
         }
 
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
+        
 
         /* Modal Content */
-        .modal-content {
+        /*.modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 30%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        table{
+            width: 100%;
+            margin: auto;
+        }*/
+
+        /* Add Animation */
+        /*@@-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @@keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }*/
+
+        /* The Close Button */
+        /*.close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .modal-header {
+            padding: 2px 25px;
+            background-color: #979999;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #979999;
+            color: white;
+        }*/
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        
+
+        /*/* Modal Content */
+            .modal-content {
             position: relative;
             background-color: #fefefe;
             margin: auto;
@@ -138,8 +220,10 @@
             }
 
         .modal-header {
-            padding: 2px 25px;
-            background-color: #979999;
+            padding: 16px 2px;
+            padding-left: 10px;
+            padding-bottom: 0px;
+            background-color: #6b9c8c;
             color: white;
         }
 
@@ -147,19 +231,41 @@
             padding: 2px 16px;
         }
 
-        .modal-footer {
-            padding: 2px 16px;
-            background-color: #979999;
-            color: white;
-        }
-
         td {
             padding: 5px;
         }
 
-        #start, #end {
+        #date {
+            width: 180px;
+        }
+
+        #time {
+            width: 180px;
+        }
+
+        #potvrdi {
+            transition-duration: 0.4s;
+            font-family: Poppins;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            background-color: #6b9c8c;
+            width: 120px;
+            zoom: 1.2;
+        }
+
+            #potvrdi:hover {
+                background-color: #4A6D62;
+                color: white;
+            }
+
+
+        #Start, #End {
             width: 100%;
         }
+
     </style>
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -260,16 +366,13 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="hidden" name="addressLat"  id="AddressLat"/>
+                                        <input type="hidden" name="addressLat" id="AddressLat" />
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
-                                        <input type="hidden" name="addressLong" id="AddressLong"/>
+                                        <input type="hidden" name="addressLong" id="AddressLong" />
                                     </td>
                                 </tr>
-                                
-                                <tr colspan="2" align="center">
+                                <tr colspan="2">
                                     <td>
                                         <input id="potvrdi" type="submit" value="Submit location">
                                     </td>
@@ -306,12 +409,14 @@
         function initMap() {
             geocoder = new google.maps.Geocoder();
                // The location of Sarajevo
-                var sarajevo = { lat: 43.8563, lng: 18.4131 };
+               var sarajevo = { lat: 43.8563, lng: 18.4131 };
                 // The map, centered at Sarajevo
+            
                 map = new google.maps.Map(
-                    document.getElementById('map'), { zoom: 15, center: sarajevo });
+                    document.getElementById('map'), { zoom: 14, center: sarajevo });
 
-                }
+        }
+        
 
         function showAllLocations() {
             var locationIcon =
@@ -322,9 +427,10 @@
 
             var infoObj = [];
             for (var i = 0; i < locations.length; i++) {
-                var contentString = '<h3>' + 'Naziv: ' + locations[i].name + '</h3> ' +
-                    '<h3>' + 'Adresa: ' + locations[i].address + '</h3> ' +
-                    '<h3>' + 'Radno vrijeme: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ';
+                var contentString = '<h3>' + 'Name: ' + locations[i].name + '</h3> ' +
+                    '<h3>' + 'Address: ' + locations[i].address + '</h3> ' +
+                    '<h3>' + 'Working hours: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ';
+                // '<h3>' + 'Internet speed: ' + locations[i].speed + '</h3> ';
 
                 var myLatLng = new google.maps.LatLng(locations[i].lat, locations[i].long);
                 const marker = new google.maps.Marker({
@@ -386,6 +492,7 @@
         }
 
         function calculateAndShowRoute() {
+            showAllLocations();
                 locations = @Html.Raw(ViewBag.MarkeriLokacija);
                 var positionOptions = {
                     enableHighAccuracy: true,

@@ -61,6 +61,7 @@ namespace DigitalNomads.Controllers
                 markeriLokacija += string.Format("'address': '{0}',", place.Address);
                 markeriLokacija += string.Format("'begin': '{0}',", place.Start.Hour);
                 markeriLokacija += string.Format("'end': '{0}'", place.End.Hour);
+                //markeriLokacija += string.Format("'speed': '{0}'", place.Speed);
                 if (vel < places.Count - 1)
                 {
                     markeriLokacija += "},";
@@ -144,14 +145,13 @@ namespace DigitalNomads.Controllers
             newPlace.End = end;
             newPlace.Lat = Double.Parse(addressLat, CultureInfo.InvariantCulture);
             newPlace.Long = Double.Parse(addressLong, CultureInfo.InvariantCulture);
+            //newPlace.Speed = Double.Parse(speed);
 
             _context.Add(newPlace);
             _context.SaveChanges();
 
             return RedirectToAction("Map");
 
-            //Console.WriteLine("nesto");
-            //return View("Map");
         }
     }
 }
