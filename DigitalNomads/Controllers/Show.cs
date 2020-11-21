@@ -12,5 +12,6 @@ namespace DigitalNomads.Controllers
         {
             return View();
         }
+        
     }
 }
