@@ -1,7 +1,7 @@
 ﻿<head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
-         @@import url('https://fonts.googleapis.com/css?family=Raleway');
+        @@import url('https://fonts.googleapis.com/css?family=Raleway');
         /* Set the size of the div element that contains the map */
 
         body {
@@ -69,59 +69,73 @@
         }
 
         .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 30%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 30%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
 
-/* Add Animation */
-@@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
+        /* Add Animation */
+        @@-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
 
-@@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
 
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+        @@keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
 
         .modal-header {
             padding: 2px 25px;
@@ -129,7 +143,9 @@
             color: white;
         }
 
-.modal-body {padding: 2px 16px;}
+        .modal-body {
+            padding: 2px 16px;
+        }
 
         .modal-footer {
             padding: 2px 16px;
@@ -144,7 +160,6 @@
         #start, #end {
             width: 100%;
         }
-
     </style>
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
 </head>
@@ -173,19 +188,19 @@
                 <i class="fas fa-users fa-2x"></i>
             </button>
             @*<button id="btnAddNew" type="button" class="btn btn-secondary btn-lg" href="#open-modal">
-        </button>*@
+                </button>*@
 
 
 
             @*<div id="open-modal" class="modal-window">
-            <div>
-                <a href="#" title="Close" class="modal-close">Close</a>
-                <h1>Voilà!</h1>
-                <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
-                <div><small>Check out</small></div>
-                <a href="https://aminoeditor.com" target="_blank">👉 Amino: Live CSS Editor for Chrome
-            </div>
-        </div>*@
+                    <div>
+                        <a href="#" title="Close" class="modal-close">Close</a>
+                        <h1>Voilà!</h1>
+                        <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
+                        <div><small>Check out</small></div>
+                        <a href="https://aminoeditor.com" target="_blank">👉 Amino: Live CSS Editor for Chrome
+                    </div>
+                </div>*@
 
             <button id="btnAddNew"></button>
 
@@ -200,57 +215,61 @@
 
                     </div>
                     <div class="modal-body">
-                        <table>
-                            <tr>
-                                <td>
-                                    <label for="name">Location name: </label>
-                                </td>
-                                <td>
-                                    <input type="text" id="name">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="address">Location address: </label>
-                                </td>
-                                <td>
-                                    <input type="text" id="address">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="start">Working hours(start): &nbsp;</label>
-                                </td>
-                                <td>
-                                    <input type="time" id="start">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="end">Working hours(end): &nbsp; </label>
-                                </td>
-                                <td>
-                                    <input type="time" id="end">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="speed">Internet speed: </label>
-                                </td>
-                                <td>
-                                    <input type="text" id="speed">
-                                </td>
-                            </tr>
-                            <tr colspan="2" align="center">
-                                <td>
-                                    <input id="potvrdi" type="submit" value="Submit location">
-                                </td>
-                            </tr>
-                        </table>
+                        <form asp-controller="Map" asp-action="AddLocation" method="post">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="name">Location name: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="name" id="Name">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="address">Location address: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="address" id="Address">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="start">Working hours(start): &nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="time" name="start" id="Start">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="end">Working hours(end): &nbsp; </label>
+                                    </td>
+                                    <td>
+                                        <input type="time" name="end" id="End">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="speed">Internet speed: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="speed" id="speed">
+                                    </td>
+                                </tr>
+                                <input type="hidden" name="AddressLat" />
+                                <input type="hidden" name="AddressLong" />
+                                <tr colspan="2" align="center">
+                                    <td>
+                                        <input id="potvrdi" type="submit" value="Submit location">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                     @*<div class="modal-footer">
-                        <h3></h3>
-                    </div>*@
+                            <h3></h3>
+                        </div>*@
                 </div>
 
             </div>
@@ -262,7 +281,8 @@
     <script>
             var locations = @Html.Raw(ViewBag.MarkeriLokacija);
             var teamLocations = @Html.Raw(ViewBag.MarkeriTima);
-            var odredisniLat, odredisniLon;
+        var odredisniLat, odredisniLon;
+        var geocoder;
         var map;
         var allMarkers = [];
         function removeAllMarkers() {
@@ -273,7 +293,8 @@
         }
 
             // Initialize and add the map
-            function initMap() {
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
                // The location of Sarajevo
                 var sarajevo = { lat: 43.8563, lng: 18.4131 };
                 // The map, centered at Sarajevo
@@ -428,7 +449,7 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal
         btn.onclick = function () {
             modal.style.display = "block";
         }
@@ -443,6 +464,18 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+        }
+
+        function codeAddress() {
+            var address = document.getElementById('Address').value;
+            geocoder.geocode({ 'address': address }, function (result, status) {
+                if (status == 'OK') {
+                    document.getElementById('AddressLat').value = results[0].geometry.location.lat;
+                    document.getElementById('AddressLong').value = results[0].geometry.location.long;
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
         }
 
     </script>

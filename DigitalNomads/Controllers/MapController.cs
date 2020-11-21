@@ -132,5 +132,12 @@ namespace DigitalNomads.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddLocation(string name, string address, DateTime start, DateTime end, string speed, string AddressLat, string AddressLong)
+        {
+            Console.WriteLine("nesto");
+            return View("Map");
+        }
     }
 }
