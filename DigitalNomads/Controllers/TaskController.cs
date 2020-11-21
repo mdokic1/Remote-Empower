@@ -152,9 +152,22 @@ namespace DigitalNomads.Controllers
             return View("AllTasks", lists);
         }
 
-        public async Task<IActionResult> AddNewTask (string Title, string Description, DateTime DeadlineDate, DateTime DeadlineTime)
+        public async Task<IActionResult> AddNewTask (string Title, string Description, DateTime DeadlineDate, DateTime DeadlineTime, int UserId)
         {
-            
+            DateTime deadline = new DateTime(DeadlineDate.Year, DeadlineDate.Month, DeadlineDate.Day, DeadlineTime.Hour, DeadlineTime.Minute, DeadlineTime.Second);
+            Duty newTask = new Duty();
+            newTask.Title = Title;
+            newTask.IsFinished = false;
+            newTask.Deadline = deadline;
+            newTask.Description = Description;
+            newTask.UserId = UserId;
+
+            _dbContext.Add(newTask);
+            _dbContext.SaveChanges();
+
+            TaskList lists = await GetAllTasksByIdAsync();
+
+            return View("AllTasks", lists);
         }
     }
 }

@@ -404,7 +404,7 @@
 
                     </div>
                     <div class="modal-body">
-                        <form asp-controller="Reservations" asp-action="CheckCardNumber" method="post">
+                        <form asp-controller="Task" asp-action="AddNewTask" method="post">
                             <table>
                                 <tr>
                                     <td>
@@ -438,6 +438,9 @@
                                         <input type="time" name="DeadlineTime" id="time">
                                     </td>
                                 </tr>
+
+                                <input type="hidden" name="UserId" value='@Model.UnfinishedTasks[0].UserId' />
+
                                 <tr colspan="2">
                                     <td>
                                         <button id="potvrdi" type="submit">Add</button>
