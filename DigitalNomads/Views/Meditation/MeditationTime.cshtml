@@ -6,14 +6,61 @@
 
     </head>
     <body>
-        <a href="MeditationController/OneMinuteMeditation">
-            <input type="button" value="1 minute" />
+        <br />
+        <br />
+        <h2 style="color:whitesmoke">Quiet the mind and the soul will speak.</h2>
+        <br />
+        <br />
+        <br />
+        <br />
+        <a href="@Url.Action("OneMinuteMeditation", "Meditation")" class="share-button">
+            1 minute
         </a>
-        <a href="MeditationController/FiveMinutesMeditation">
-            <input type="button" value="5 minutes" />
+        <br />
+        <br />
+        <br />
+        <a href="@Url.Action("FiveMinutesMeditation", "Meditation")" class="share-button">
+            5 minutes
         </a>
-        <a href="MeditationController/TenMinutesMeditation">
-            <input type="button" value="10 minutes" />
+
+        <br />
+        <br />
+        <br />
+        <a href="@Url.Action("TenMinutesMeditation", "Meditation")" class="share-button">
+            10 minutes
         </a>
     </body>
 </html>
+
+<style>
+body { background-image: url("https://i.pinimg.com/originals/18/ae/d9/18aed9f1517a51eea30c398572ab8f11.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+
+
+    .share-button:hover {
+        transform: scale(1.1);
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+
+    .share-button {
+        width: 200px;
+        height: 50px;
+        background: #19334d;
+        border-radius: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 50px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: .3s linear;
+        text-decoration: none;
+        color: whitesmoke;
+        text-decoration:none;
+    }
+
+
+
+</style>

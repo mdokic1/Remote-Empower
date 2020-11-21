@@ -15,7 +15,7 @@ namespace DigitalNomads.Controllers
     public class MeditationController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult MeditationTime()
         {
             return View();
         }
@@ -41,38 +41,21 @@ namespace DigitalNomads.Controllers
             return res;
         }
 
-        public async Task<IActionResult> StartMeditation()
-        {
-            IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
-            MeditationAndDurationModel model = new MeditationAndDurationModel
-            {
-                MeditationRes = res,
-                Minutes = 1
-            };
-            return View(model);
-        }
 
         public async Task<IActionResult> FiveMinutesMeditation()
         {
             IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
+            Random rnd = new Random();
+            int index = rnd.Next(res.Count);
+            MeditationRes meditationRes = res[index];
             MeditationAndDurationModel model = new MeditationAndDurationModel
             {
-                MeditationRes = res,
+                MeditationRes = meditationRes,
                 Minutes = 5
             };
             return View(model);
         }
 
-        public async Task<IActionResult> TenMinutesMeditation()
-        {
-            IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
-            MeditationAndDurationModel model = new MeditationAndDurationModel
-            {
-                MeditationRes = res,
-                Minutes = 10
-            };
-            return View(model);
-        }
 
 
     }
