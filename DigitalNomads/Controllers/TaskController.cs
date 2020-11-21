@@ -135,10 +135,21 @@ namespace DigitalNomads.Controllers
             await _dbContext.SaveChangesAsync();
         }
 
-        public void ChangeTaskType (TaskRes task)
+        public async Task<IActionResult> ChangeTaskType (TaskRes task)
         {
-            Console.WriteLine(task.Id + task.Title);
-            
+            Duty taskDb = await _dbContext.Tasks
+                .Where(t => t.Id == task.Id)
+                .FirstOrDefaultAsync();
+
+
+            taskDb.IsFinished = true;
+
+            _dbContext.Tasks.Update(taskDb);
+            _dbContext.SaveChanges();
+
+            TaskList lists = await GetAllTasksByIdAsync();
+
+            return View("AllTasks", lists);
         }
     }
 }
