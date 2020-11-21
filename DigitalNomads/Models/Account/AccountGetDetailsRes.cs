@@ -14,5 +14,7 @@ namespace DigitalNomads.Models.Account
         public double Lat { get; set; }
         public double Long { get; set; }
 
+        public int TeamId { get; set; }
+
     }
 }

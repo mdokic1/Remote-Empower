@@ -3,11 +3,20 @@
     <style>
          @@import url('https://fonts.googleapis.com/css?family=Raleway');
         /* Set the size of the div element that contains the map */
-        
+
+        body {
+            background-color: #575757;
+        }
+
+        .full-height {
+            height: 100%;
+        }
 
         #map {
             height: 800px;
             width: 100%;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .container-fluid {
@@ -59,321 +68,82 @@
             border-color: #808184;
         }
 
-
-
-:root, button{
-    font-family: 'Raleway', serif;
+        .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-*{
-    box-sizing: border-box;
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
 }
 
-.color{
-    background: linear-gradient(to right, #e1e0ff, #d7fadd);
+/* Add Animation */
+@@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
 }
 
-body{
-    background: #191919;
-    background: white;
-    user-select: none;
-    letter-spacing: 3px;
-    color: #b9b9b9;
+@@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
 }
 
-h1{
-    padding-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 16px;
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-p{
-    padding-bottom: 15px;
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-p:last-of-type{
-    padding-bottom: 0;
-}
-
-.try-again{
-    cursor: pointer;
-    position: relative;
-    font-size: 16px;
-}
-
-.try-again:after{
-    content: '';
-    position: absolute;
-    left: 15px;
-    right: 15px;
-    height: 1px;
-    top: 100%;
-    background: #ebebeb;
-    margin-top: 8px;
-    transition: all 0.3s ease;
-}
-
-.try-again:hover:after{
-    left: 40%;
-    right: 40%;
-}
-
-.wrapper{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.button{
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
-    -webkit-appearance: none;
-    background: none;
-    outline: none;
-    border: none;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    border-radius: 2px;
-    transition: all 0.5s ease;
-    font-weight: 600;
-    font-size: 14px;
-    height: 60px;
-    width: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 0px;
-    box-shadow: 0 0 0 white, 0 0 0 white;
-}
-
-.button-text{
-    display: inline-block;
-    position: relative;
-    z-index: 2;
-    background: linear-gradient(to right, #504bff, #4cfa63);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.button-circle{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 6px;
-    width: 6px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #504bff, 0 0 20px #504bff, 0 0 30px #504bff;
-    transition: all 0.5s ease;
-}
-
-.button-circle2{
-    top: auto;
-    bottom: 0;
-}
-
-.button-circle3{
-    left: auto;
-    right: 0;
-    box-shadow: 0 0 10px #4cfa63, 0 0 20px #4cfa63, 0 0 30px #4cfa63;
-}
-
-.button-circle4{
-    left: auto;
-    top: auto;
-    bottom: 0;
-    right: 0;
-    box-shadow: 0 0 10px #4cfa63, 0 0 20px #4cfa63, 0 0 30px #4cfa63;
-}
-
-.button:hover{
-    box-shadow: -15px 0 70px -15px #504bff, 15px 0 70px -15px #4cfa63;
-}
-
-.button:hover .button-circle1{
-    transform: translate(-15px, -15px) scale(0);
-}
-
-.button:hover .button-circle2{
-    transform: translate(-15px, 15px) scale(0);
-}
-
-.button:hover .button-circle3{
-    transform: translate(15px, -15px) scale(0);
-}
-
-.button:hover .button-circle4{
-    transform: translate(15px, 15px) scale(0);
-}
-
-.button:hover .button-circle{
-    box-shadow: none;
-}
-
-.popup{
-    opacity: 0;
-    visibility: hidden;
-    height: 400px;
-    width: 400px;
-    flex-shrink: 0;
-    border-radius: 3px;
-    position: relative;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease
-}
-
-.popup-inside{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 50%;
-    box-shadow: 0 0 0 black;
-    transition:
-            box-shadow 0.5s ease 0.7s,
-            border-radius 0.35s ease 0.7s;
-}
-
-.backgrounds{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.background{
-    --offset: 0;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    background: linear-gradient(to right, #504bff, #4cfa63);
-    transform: scale(0);
-    transition: all 0.5s ease 0s;
-    border-radius: 50%;
-}
-
-.background2{
-    --offset: 10%;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    background: linear-gradient(to right, #6665ff, #69fa7f);
-    transform: scale(0);
-    transition: all 0.5s ease 0.1s;
-}
-
-.background3{
-    --offset: 20%;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    background: linear-gradient(to right, #8583ff, #85fa99);
-    z-index: 2;
-    transition: all 0.5s ease 0.2s;
-}
-
-.background4{
-    --offset: 30%;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    background: linear-gradient(to right, #aaaaff, #a7fab7);
-    z-index: 3;
-    transition: all 0.5s ease 0.3s;
-}
-
-.background5{
-    --offset: 40%;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    background: linear-gradient(to right, #c9c8ff, #c3fad1);
-    z-index: 4;
-    transition: all 0.5s ease 0.4s;
-}
-
-.background6{
-    --offset: 40%;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    background: white;
-    z-index: 5;
-    transition: all 0.8s ease 0.4s;
-}
-
-.content{
-    --offset: 0;
-    position: absolute;
-    left: var(--offset);
-    right: var(--offset);
-    bottom: var(--offset);
-    top: var(--offset);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.35s ease 0.75s;
-    z-index: 10;
-}
-
-.content-wrapper{
-    text-align: center;
-}
-
-body.active .content{
-    opacity: 1;
-    transform: none;
-}
-
-body.active .popup{
-    opacity: 1;
-    visibility: visible;
-}
-
-body.active .popup-inside{
-    border-radius: 0;
-    box-shadow: -50px 0 200px -50px #504bff, 50px 0 200px -50px #4cfa63;
-}
-
-body.active .background{
-    transform: scale(1);
-}
-
-body.active .background6{
-    transform: scale(8);
-}
-
-        body {
-            background-color: #575757;
+        .modal-header {
+            padding: 2px 25px;
+            background-color: #979999;
+            color: white;
         }
 
+.modal-body {padding: 2px 16px;}
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #979999;
+            color: white;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        #start, #end {
+            width: 100%;
+        }
 
     </style>
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
@@ -417,39 +187,75 @@ body.active .background6{
             </div>
         </div>*@
 
-            <div class="wrapper">
-                <div id="btnAddNew" class="button" onclick="document.body.classList.add('active')">
-                    <span class="button-text">Press</span>
-                    <div class="button-backgrounds">
-                        <div class="button-circle button-circle1"></div>
-                        <div class="button-circle button-circle2"></div>
-                        <div class="button-circle button-circle3"></div>
-                        <div class="button-circle button-circle4"></div>
+            <button id="btnAddNew"></button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Add new location</h2>
+                        <span class="close">&times;</span>
+
                     </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="name">Location name: </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="name">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="address">Location address: </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="address">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="start">Working hours(start): &nbsp;</label>
+                                </td>
+                                <td>
+                                    <input type="time" id="start">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="end">Working hours(end): &nbsp; </label>
+                                </td>
+                                <td>
+                                    <input type="time" id="end">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="speed">Internet speed: </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="speed">
+                                </td>
+                            </tr>
+                            <tr colspan="2" align="center">
+                                <td>
+                                    <input id="potvrdi" type="submit" value="Submit location">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    @*<div class="modal-footer">
+                        <h3></h3>
+                    </div>*@
                 </div>
+
             </div>
 
-            <div class="wrapper">
-                <div class="popup">
-                    <div class="popup-inside">
-                        <div class="backgrounds">
-                            <div class="background"></div>
-                            <div class="background background2"></div>
-                            <div class="background background3"></div>
-                            <div class="background background4"></div>
-                            <div class="background background5"></div>
-                            <div class="background background6"></div>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <div class="content-wrapper">
-                            <h1>well done</h1>
-                            <p>Do you like it?</p>
-                            <p class="try-again" onclick="document.body.classList.remove('active')">Yes! I will try again</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -478,7 +284,7 @@ body.active .background6{
 
         function showAllLocations() {
             var locationIcon =
-                'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+                'https://img.icons8.com/color/48/000000/working-with-a-laptop.png';
 
 
             removeAllMarkers();
@@ -516,7 +322,7 @@ body.active .background6{
 
         function showAllTeammates() {
             var locationIcon =
-                'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+                'https://img.icons8.com/plasticine/76/000000/user-location.png';
 
             removeAllMarkers();
             var infoObj = [];
@@ -613,6 +419,31 @@ body.active .background6{
                 const y = deltaFi;
                 return Math.sqrt(x * x + y * y) * R;
             }
+
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("btnAddNew");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
     </script>
 
