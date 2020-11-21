@@ -151,5 +151,10 @@ namespace DigitalNomads.Controllers
 
             return View("AllTasks", lists);
         }
+
+        public async Task<IActionResult> AddNewTask (string Title, string Description, DateTime DeadlineDate, DateTime DeadlineTime)
+        {
+            
+        }
     }
 }

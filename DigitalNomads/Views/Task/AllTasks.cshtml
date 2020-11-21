@@ -30,7 +30,7 @@
             font-family: Heebo;
         }
 
-        input {
+        input.tabovi {
             position: absolute;
             opacity: 0;
             z-index: -1;
@@ -224,6 +224,140 @@
             height: 4px;
             top: calc(50% - 2px);
         }
+
+        .done_task {
+            transition-duration: 0.4s;
+            font-family: Poppins;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            background-color: #EED2CC;
+        }
+
+        .done_task:hover {
+            background-color: #4A6D62;
+            color: white;
+        }
+
+
+        /*modal*/
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 30%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @@-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @@keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .modal-header {
+            padding: 16px 2px;
+            padding-left: 10px;
+            padding-bottom: 0px;
+            background-color: #E6BCB3;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        #date {
+            width: 180px;
+        }
+
+        #time {
+            width: 180px;
+        }
+
+        #potvrdi {
+            transition-duration: 0.4s;
+            font-family: Poppins;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            background-color: #EED2CC;
+            width: 120px;
+        }
+
+        #potvrdi:hover {
+            background-color: #4A6D62;
+            color: white;
+        }
+
+        #start, #end {
+            width: 100%;
+        }
+
     </style>
 </head>
 
@@ -236,27 +370,96 @@
                 @for (int i = 0; i < Model.UnfinishedTasks.Count; i++)
                 {
                     <div class="tab">
-                        <input type="checkbox" id=@i>
+                        <input class="tabovi" type="checkbox" id=@i>
                         <label class="tab-label" for=@i>@Model.UnfinishedTasks[i].Title</label>
                         <div class="tab-content">
                             <p><b>Deadline:</b> @Model.UnfinishedTasks[i].Deadline.ToString("HH:mm")</p>
                             <p><b>Description:</b> @Model.UnfinishedTasks[i].Description</p>
-                            
+
                             <form asp-controller="Task" asp-action="ChangeTaskType" method="post">
                                 <input type="hidden" id="Id" name="Id" value='@Model.UnfinishedTasks[i].Id' />
                                 <input type="hidden" id="Title" name="Title" value='@Model.UnfinishedTasks[i].Title' />
-                                <button type="submit">Done</button>
+                                <button class="done_task" type="submit">Done</button>
                             </form>
                         </div>
                     </div>
                 }
             </div>
-            <div class="dugme" style="text-align: center;   margin-top:5%">
+            <div class="dugme" id="btnAddNew" style="text-align: center;   margin-top:5%">
                 <button class="icon-btn add-btn">
                     <div class="add-icon"></div>
                     <div class="btn-txt">Add</div>
                 </button>
             </div>
+
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Add a new task:</h2>
+                        <span class="close">&times;</span>
+
+                    </div>
+                    <div class="modal-body">
+                        <form asp-controller="Reservations" asp-action="CheckCardNumber" method="post">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="title">Title: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="Title" id="title">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="description">Description: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="Description" id="description">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="date">Deadline: </label>
+                                    </td>
+                                    <td>
+                                        <input type="date" name="DeadlineDate" id="date">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input type="time" name="DeadlineTime" id="time">
+                                    </td>
+                                </tr>
+                                <tr colspan="2">
+                                    <td>
+                                        <button id="potvrdi" type="submit">Add</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <h3></h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
 
         </div>
         <div class="col">
@@ -265,7 +468,7 @@
                 @for (int i = 0; i < Model.FinishedTasks.Count; i++)
                 {
                     <div class="tab">
-                        <input type="checkbox" id=@Model.UnfinishedTasks.Count+@i>
+                        <input class="tabovi" type="checkbox" id=@Model.UnfinishedTasks.Count+@i>
                         <label class="tab-label" for=@Model.UnfinishedTasks.Count+@i>@Model.FinishedTasks[i].Title</label>
                         <div class="tab-content">
                             <p><b>Description:</b> @Model.FinishedTasks[i].Description</p>
@@ -275,6 +478,33 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("btnAddNew");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 
