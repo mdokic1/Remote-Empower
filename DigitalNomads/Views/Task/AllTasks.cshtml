@@ -225,7 +225,7 @@
             top: calc(50% - 2px);
         }
 
-        .done_task {
+        .done_task, .remove_task {
             transition-duration: 0.4s;
             font-family: Poppins;
             font-weight: bold;
@@ -236,7 +236,7 @@
             background-color: #EED2CC;
         }
 
-        .done_task:hover {
+        .done_task:hover, .remove_task:hover {
             background-color: #4A6D62;
             color: white;
         }
@@ -456,14 +456,6 @@
 
             </div>
 
-
-
-
-
-
-
-
-
         </div>
         <div class="col">
             <h2>Finished</h2>
@@ -475,6 +467,11 @@
                         <label class="tab-label" for=@Model.UnfinishedTasks.Count+@i>@Model.FinishedTasks[i].Title</label>
                         <div class="tab-content">
                             <p><b>Description:</b> @Model.FinishedTasks[i].Description</p>
+                            <form asp-controller="Task" asp-action="RemoveTask" method="post">
+                                <input type="hidden" id="Id" name="Id" value='@Model.FinishedTasks[i].Id' />
+                                <input type="hidden" id="Title" name="Title" value='@Model.FinishedTasks[i].Title' />
+                                <button class="remove_task" type="submit">Remove</button>
+                            </form>
                         </div>
                     </div>
                 }

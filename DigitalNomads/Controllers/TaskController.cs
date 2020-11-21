@@ -169,5 +169,19 @@ namespace DigitalNomads.Controllers
 
             return View("AllTasks", lists);
         }
+
+        public async Task<IActionResult> RemoveTask(TaskRes task)
+        {
+            Duty taskDb = await _dbContext.Tasks
+                .Where(t => t.Id == task.Id)
+                .FirstOrDefaultAsync();
+
+            _dbContext.Tasks.Remove(taskDb);
+            _dbContext.SaveChanges();
+
+            TaskList lists = await GetAllTasksByIdAsync();
+
+            return View("AllTasks", lists);
+        }
     }
 }
