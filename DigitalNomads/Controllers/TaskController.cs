@@ -128,11 +128,9 @@ namespace DigitalNomads.Controllers
 
         public async Task AddTaskAsync(Task task)
         {
-              _dbContext.Add(task);
-              await _dbContext.SaveChangesAsync();
+            _dbContext.Add(task);
+            await _dbContext.SaveChangesAsync();
         }
-
-       
 
     }
 }
