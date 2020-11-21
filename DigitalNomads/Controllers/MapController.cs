@@ -24,23 +24,23 @@ namespace DigitalNomads.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        //public async Task<int> GetAccountIdByUserIdAsync(string UserId)
-        //{
-        //    AccountGetDetailsRes res = await _context.Accounts
-        //        .Where(a => a.UserId == UserId)
-        //        .Select(a => new AccountGetDetailsRes
-        //        {
-        //            Id = a.Id,
-        //            FirstName = a.FirstName,
-        //            LastName = a.LastName,
-        //            Lat = a.Lat,
-        //            Long = a.Long,
-        //            TeamId = a.TeamId
+        public async Task<int> GetAccountIdByUserIdAsync(string UserId)
+        {
+            AccountGetDetailsRes res = await _context.Accounts
+                .Where(a => a.UserId == UserId)
+                .Select(a => new AccountGetDetailsRes
+                {
+                    Id = a.Id,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Lat = a.Lat,
+                    Long = a.Long,
+                    TeamId = a.TeamId
 
-        //        }).FirstOrDefaultAsync();
+                }).FirstOrDefaultAsync();
 
-        //    return res.Id;
-        //}
+            return res.Id;
+        }
 
         public async Task<IActionResult> MapAsync()
         {
@@ -77,14 +77,14 @@ namespace DigitalNomads.Controllers
             ViewBag.Longitude = places.ElementAt(0).Long.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            // var userId = "3c23279c-d8bf-41c3-adb1-07bf3b1c9b44";
+            int accountId = await GetAccountIdByUserIdAsync(userId);
 
             int teamId = 0;
 
 
             foreach (Account account in accounts)
             {
-                if (account.UserId.Equals(userId))
+                if (account.Id.Equals(accountId))
                 {
                     teamId = account.TeamId;
                     break;
@@ -131,6 +131,13 @@ namespace DigitalNomads.Controllers
             ViewBag.MarkeriTima = markeriTima;
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddLocation(string name, string address, DateTime start, DateTime end, string speed, string AddressLat, string AddressLong)
+        {
+            Console.WriteLine("nesto");
+            return View("Map");
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DigitalNomads.Controllers
     public class MeditationController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult MeditationTime()
         {
             return View();
         }
@@ -41,38 +41,53 @@ namespace DigitalNomads.Controllers
             return res;
         }
 
-        public async Task<IActionResult> StartMeditation()
+
+
+        public async Task<IActionResult> OneMinuteMeditation()
         {
             IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
+            Random rnd = new Random();
+            int index = rnd.Next(res.Count);
+            MeditationRes meditationRes = res[index];
             MeditationAndDurationModel model = new MeditationAndDurationModel
             {
-                MeditationRes = res,
-                Minutes = 1
+                MeditationRes = meditationRes,
+                Seconds = 60
             };
-            return View(model);
+            return View("MeditationRoom", model);
         }
 
         public async Task<IActionResult> FiveMinutesMeditation()
         {
             IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
+            Random rnd = new Random();
+            int index = rnd.Next(res.Count);
+            MeditationRes meditationRes = res[index];
             MeditationAndDurationModel model = new MeditationAndDurationModel
             {
-                MeditationRes = res,
-                Minutes = 5
+                MeditationRes = meditationRes,
+                Seconds = 300
             };
-            return View(model);
+            return View("MeditationRoom", model);
         }
 
         public async Task<IActionResult> TenMinutesMeditation()
         {
             IList<MeditationRes> res = await GetAllMeditationDetailsAsync();
+            Random rnd = new Random();
+            int index = rnd.Next(res.Count);
+            MeditationRes meditationRes = res[index];
             MeditationAndDurationModel model = new MeditationAndDurationModel
             {
-                MeditationRes = res,
-                Minutes = 10
+                MeditationRes = meditationRes,
+                Seconds = 600
             };
-            return View(model);
+            return View("MeditationRoom",model);
         }
+
+
+
+
 
 
     }

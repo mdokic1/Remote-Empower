@@ -7,7 +7,7 @@ namespace DigitalNomads.Models.Meditation
 {
     public class MeditationAndDurationModel
     {
-        public IList<MeditationRes> MeditationRes { get; set; }
-        public int Minutes { get; set; }
+        public MeditationRes MeditationRes { get; set; }
+        public int Seconds { get; set; }
     }
 }
