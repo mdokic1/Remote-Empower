@@ -14,7 +14,6 @@ namespace DigitalNomads.Entities
         public double Long { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public int InternetSpeed { get; set; }
 
 
 
