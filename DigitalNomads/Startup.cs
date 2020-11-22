@@ -32,8 +32,8 @@ namespace DigitalNomads
             options.UseSqlServer(
                 Configuration.GetConnectionString("CtrlAltDefeatDbContext")));
 
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<CtrlAltDefeatDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<CtrlAltDefeatDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
