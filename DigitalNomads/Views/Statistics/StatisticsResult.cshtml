@@ -1,0 +1,65 @@
+﻿@{
+}
+
+<html>
+<head>
+
+</head>
+<body style="background-color:#3a554c">
+    <h1>@Model.Message1</h1>
+    <h2>@Model.Message2</h2>
+    <a href="@Url.Action("MeditationTime", "Meditation")" class="share-button" style="margin:auto">
+        click to meditate
+    </a>
+    <br />
+    <br />
+    <a href="@Url.Action("ShowCards", "Show")" class="share-button" style="margin:auto; " >
+        go back to work
+    </a>
+</body>
+</html>
+
+<style>
+    h1 {
+        padding-top: 200px;
+        color: whitesmoke;
+        margin-left: 350px;
+        align-items: center;
+    }
+
+    h2 {
+        padding-top:10px;
+        color: whitesmoke;
+        margin-left:475px;
+        align-items: center;
+        
+    }
+
+    .share-button:hover {
+        transform: scale(1.1);
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+
+    .share-button {
+        width: 110px;
+        height: 40px;
+        background: #19334d;
+        border-radius: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 50px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: .3s linear;
+        text-decoration: none;
+        color: whitesmoke;
+        text-decoration: none;
+        margin-left: 100px;
+        margin-top:15px;
+        margin-bottom:15px;
+    }
+</style>
