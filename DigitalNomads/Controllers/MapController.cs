@@ -145,7 +145,6 @@ namespace DigitalNomads.Controllers
             newPlace.End = end;
             newPlace.Lat = Double.Parse(addressLat, CultureInfo.InvariantCulture);
             newPlace.Long = Double.Parse(addressLong, CultureInfo.InvariantCulture);
-            //newPlace.Speed = Double.Parse(speed);
 
             _context.Add(newPlace);
             _context.SaveChanges();

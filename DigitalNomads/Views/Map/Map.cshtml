@@ -216,20 +216,6 @@
             <button id="btnAllTeammates" type="button" class="btn btn-secondary btn-lg" onclick="showAllTeammates()">
                 <i class="fas fa-users fa-2x"></i>
             </button>
-            @*<button id="btnAddNew" type="button" class="btn btn-secondary btn-lg" href="#open-modal">
-                </button>*@
-
-
-
-            @*<div id="open-modal" class="modal-window">
-                    <div>
-                        <a href="#" title="Close" class="modal-close">Close</a>
-                        <h1>Voilà!</h1>
-                        <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
-                        <div><small>Check out</small></div>
-                        <a href="https://aminoeditor.com" target="_blank">👉 Amino: Live CSS Editor for Chrome
-                    </div>
-                </div>*@
 
             <button id="btnAddNew"></button>
 
@@ -302,9 +288,6 @@
                             </table>
                         </form>
                     </div>
-                    @*<div class="modal-footer">
-                            <h3></h3>
-                        </div>*@
                 </div>
 
             </div>
@@ -504,23 +487,6 @@
                 modal.style.display = "none";
             }
         }
-
-        
-
-        //function codeAddress() {
-        //    var address = document.getElementById('Address').value;
-        //    geocoder.geocode({ 'address': address }, function (results, status) {
-        //        if (status == 'OK') {
-        //            console.log("OK");
-        //            document.getElementById('AddressLat').value = results[0].geometry.location.lat;
-        //            document.getElementById('AddressLong').value = results[0].geometry.location.lng;
-        //            console.log(results[0].geometry.location.lat);
-        //            alert(results[0].geometry.location.lat + " " + results[0].geometry.location.lng);
-        //        } else {
-        //            alert('Geocode was not successful for the following reason: ' + status);
-        //        }
-        //    });
-        //};
 
         function codeAddress() {
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
