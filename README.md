@@ -1,54 +1,22 @@
-# CtrlAltDefeat
+# Remote empower
 
-# Bicom Systems Hackathon 2020
+[![github](https://img.icons8.com/nolan/64/working-with-a-laptop.png)]
+--
+## Overview
 
-## Zadatak
+The application solves the problem of finding the ideal place for work, allows you to organize your own tasks, offers tips based on your own habits and provides relaxing sounds suitable for meditation.
 
-Od timova očekujemo da u 48 sati kreiraju web ili mobilnu aplikaciju kao idejno rješenje za problem/izazov koji će biti podijeljen sa njima pred sami početak Hackathon-a.
+ ## Features
+* Tasks ogranization
+* Meditation options
+* Finding perfect place for work
+* Insight into the location of team members
+* A trained model based on our own data
 
-## Bitni datumi
-
-- **Ceremonija otvaranja**: 20. novembar, 14-15h 
-- **Pitching sesije**: 22. novembar, 15-18h
-- **Ceremonija zatvaranja (proglašenje pobjednika)**: 27. novembar, 14-15h
-
----
-
-- **Hacking**: 20. novembar, 15h - 22. novembar, 15h
-- **Support Session** ```#4```: 20. novembar, 17-18h 
-- **Support Session** ```#5```: 21. novembar, 12-13h 
-- **Support Session** ```#6```: 22. novembar, 11-12h
-
-Takmičari će na svoje email adrese dobiti pozive za svaki od navedenih događaja.
-
-## Mentorski parovi
-
-Za prikaz mentorskih parova, molimo vas da pogledate tabelu ispod.
-
-<table>
-<tr><td>
-
-| Mentorski par  | Mentor  | Tim |
-|:----------|:----------|:----------|
-| #1    | Nihad Pasalic| Lorem Ipsum   |
-| #2    | Kenan Hadzihasanovic| DBM    |
-| #3    | Adnan Dizdarevic| blueBit    |
-| #4    | Semir Karic| Peaky Blinders  |
-| #5    | Elvis Oric| CtrlAltDefeat    |
-| #6    | Tarik Omerćehajic| signum    |
-| #7    | Armin Omanovic| Angry Nerds  |
-
-</td><td>
-
-| Mentorski par  | Mentor  | Tim |
-|:----------|:----------|:----------|
-| #8    | Asmir Selimovic| Visiot Team  |
-| #9    | Semir Omerovic | ImpeccaCode  |
-| #10    | Tarik Fazlic| Čelik          |
-| #11   | Tarik Dahic| Debugger Team    |
-| #12    | Anes Sprecic| Triple A       |
-| #13    | Mustafa Spahic| AMH Creations|
-| #14    | Ajnur Jukan| Indexi          |
-
-</td></tr> </table>
-
+## Tech
+* .NetCore
+* Js
+* JQuery
+* HTML
+* CSS
+* Azure Machine Learning Tool
