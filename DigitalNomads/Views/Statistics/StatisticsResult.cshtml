@@ -5,61 +5,56 @@
 <head>
 
 </head>
-<body style="background-color:#3a554c">
-    <h1>@Model.Message1</h1>
-    <h2>@Model.Message2</h2>
-    <a href="@Url.Action("MeditationTime", "Meditation")" class="share-button" style="margin:auto">
-        click to meditate
-    </a>
-    <br />
-    <br />
-    <a href="@Url.Action("ShowCards", "Show")" class="share-button" style="margin:auto; " >
+<body >
+    <div class="wrap">
+        <h1>@Model.Message1</h1>
+        <h3>@Model.Message2</h3>
+    </div>
+    <div class="btn-wrap">
+        <a href="@Url.Action("MeditationTime", "Meditation")" class="btn btn-outline-light">
+            click to meditate
+        </a>
+        <br />
+        <br />
+       <a  id="dr" href="@Url.Action("ShowCards", "Show")" class="btn btn-outline-light" style="margin-left:15px;">
         go back to work
-    </a>
+        </a>
+    </div>
 </body>
 </html>
 
 <style>
-    h1 {
-        padding-top: 200px;
-        color: whitesmoke;
-        margin-left: 350px;
-        align-items: center;
+    
+   
+    .btn-wrap {
+        margin-top:25px;
+    display:flex;
+    margin-left:-150px;
+
+    }
+   
+    .wrap {
+        max-width: 550px;
+        margin-top: 160px;
+        margin-left: -220px;
+    }
+    body {
+        background-image: url(https://i.pinimg.com/originals/36/e6/d5/36e6d5428dfed2568b0a412a53841a36.jpg);
+        background-repeat: no-repeat;
     }
 
-    h2 {
-        padding-top:10px;
-        color: whitesmoke;
-        margin-left:475px;
-        align-items: center;
-        
-    }
+        h1 {
+            color: whitesmoke;
+        }
 
-    .share-button:hover {
-        transform: scale(1.1);
-        text-decoration: none;
-        color: whitesmoke;
-    }
+        h3 {
+            padding-top: 20px;
+            color: whitesmoke;
+            align-items: center;
+        }
+    
 
 
-    .share-button {
-        width: 110px;
-        height: 40px;
-        background: #19334d;
-        border-radius: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 50px;
-        overflow: hidden;
-        position: relative;
-        cursor: pointer;
-        transition: .3s linear;
-        text-decoration: none;
-        color: whitesmoke;
-        text-decoration: none;
-        margin-left: 100px;
-        margin-top:15px;
-        margin-bottom:15px;
-    }
+   
+       
 </style>
