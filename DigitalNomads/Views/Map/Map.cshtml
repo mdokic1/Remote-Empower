@@ -70,84 +70,6 @@
             border-color: #808184;
         }
 
-        
-
-        /* Modal Content */
-        /*.modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 30%;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            -webkit-animation-name: animatetop;
-            -webkit-animation-duration: 0.4s;
-            animation-name: animatetop;
-            animation-duration: 0.4s
-        }
-
-        table{
-            width: 100%;
-            margin: auto;
-        }*/
-
-        /* Add Animation */
-        /*@@-webkit-keyframes animatetop {
-            from {
-                top: -300px;
-                opacity: 0
-            }
-
-            to {
-                top: 0;
-                opacity: 1
-            }
-        }
-
-        @@keyframes animatetop {
-            from {
-                top: -300px;
-                opacity: 0
-            }
-
-            to {
-                top: 0;
-                opacity: 1
-            }
-        }*/
-
-        /* The Close Button */
-        /*.close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-            .close:hover,
-            .close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-        .modal-header {
-            padding: 2px 25px;
-            background-color: #979999;
-            color: white;
-        }
-
-        .modal-body {
-            padding: 2px 16px;
-        }
-
-        .modal-footer {
-            padding: 2px 16px;
-            background-color: #979999;
-            color: white;
-        }*/
-
         .modal {
             display: none;
             position: fixed;
@@ -223,7 +145,7 @@
             padding: 16px 2px;
             padding-left: 10px;
             padding-bottom: 0px;
-            background-color: #6b9c8c;
+            background-color: #587A9D;
             color: white;
         }
 
@@ -251,13 +173,13 @@
             border: none;
             text-align: center;
             text-decoration: none;
-            background-color: #6b9c8c;
+            background-color: #89A3BD;
             width: 120px;
             zoom: 1.2;
         }
 
             #potvrdi:hover {
-                background-color: #4A6D62;
+                background-color: #587A9D;
                 color: white;
             }
 
@@ -294,20 +216,6 @@
             <button id="btnAllTeammates" type="button" class="btn btn-secondary btn-lg" onclick="showAllTeammates()">
                 <i class="fas fa-users fa-2x"></i>
             </button>
-            @*<button id="btnAddNew" type="button" class="btn btn-secondary btn-lg" href="#open-modal">
-                </button>*@
-
-
-
-            @*<div id="open-modal" class="modal-window">
-                    <div>
-                        <a href="#" title="Close" class="modal-close">Close</a>
-                        <h1>Voilà!</h1>
-                        <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
-                        <div><small>Check out</small></div>
-                        <a href="https://aminoeditor.com" target="_blank">👉 Amino: Live CSS Editor for Chrome
-                    </div>
-                </div>*@
 
             <button id="btnAddNew"></button>
 
@@ -380,9 +288,6 @@
                             </table>
                         </form>
                     </div>
-                    @*<div class="modal-footer">
-                            <h3></h3>
-                        </div>*@
                 </div>
 
             </div>
@@ -429,8 +334,8 @@
             for (var i = 0; i < locations.length; i++) {
                 var contentString = '<h3>' + 'Name: ' + locations[i].name + '</h3> ' +
                     '<h3>' + 'Address: ' + locations[i].address + '</h3> ' +
-                    '<h3>' + 'Working hours: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ';
-                // '<h3>' + 'Internet speed: ' + locations[i].speed + '</h3> ';
+                    '<h3>' + 'Working hours: ' + locations[i].begin + 'h -' + locations[i].end + 'h' + '</h3> ' +
+                    '<h3>' + 'Internet speed: ' + locations[i].speed + '</h3> ';
 
                 var myLatLng = new google.maps.LatLng(locations[i].lat, locations[i].long);
                 const marker = new google.maps.Marker({
@@ -582,23 +487,6 @@
                 modal.style.display = "none";
             }
         }
-
-        
-
-        //function codeAddress() {
-        //    var address = document.getElementById('Address').value;
-        //    geocoder.geocode({ 'address': address }, function (results, status) {
-        //        if (status == 'OK') {
-        //            console.log("OK");
-        //            document.getElementById('AddressLat').value = results[0].geometry.location.lat;
-        //            document.getElementById('AddressLong').value = results[0].geometry.location.lng;
-        //            console.log(results[0].geometry.location.lat);
-        //            alert(results[0].geometry.location.lat + " " + results[0].geometry.location.lng);
-        //        } else {
-        //            alert('Geocode was not successful for the following reason: ' + status);
-        //        }
-        //    });
-        //};
 
         function codeAddress() {
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {

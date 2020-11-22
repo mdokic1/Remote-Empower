@@ -57,11 +57,11 @@ namespace DigitalNomads.Controllers
                 double lng = place.Long;
                 markeriLokacija += String.Format("'lat': '{0}',", lat.ToString(System.Globalization.CultureInfo.InvariantCulture));
                 markeriLokacija += String.Format("'long': '{0}',", lng.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                markeriLokacija += string.Format("'name': '{0}',", place.Name);
+                markeriLokacija += string.Format("'name': '{0}',", place.Name.Substring(0, place.Name.Length-3));
                 markeriLokacija += string.Format("'address': '{0}',", place.Address);
                 markeriLokacija += string.Format("'begin': '{0}',", place.Start.Hour);
-                markeriLokacija += string.Format("'end': '{0}'", place.End.Hour);
-                //markeriLokacija += string.Format("'speed': '{0}'", place.Speed);
+                markeriLokacija += string.Format("'end': '{0}',", place.End.Hour);
+                markeriLokacija += string.Format("'speed': '{0}'", place.Name.Substring(place.Name.Length-3, 3));
                 if (vel < places.Count - 1)
                 {
                     markeriLokacija += "},";
@@ -139,13 +139,12 @@ namespace DigitalNomads.Controllers
         public async Task<IActionResult> AddLocation(string name, string address, DateTime start, DateTime end, string speed, String addressLat, String addressLong)
         {
             Place newPlace = new Place();
-            newPlace.Name = name;
+            newPlace.Name = name + speed;
             newPlace.Address = address;
             newPlace.Start = start;
             newPlace.End = end;
             newPlace.Lat = Double.Parse(addressLat, CultureInfo.InvariantCulture);
             newPlace.Long = Double.Parse(addressLong, CultureInfo.InvariantCulture);
-            //newPlace.Speed = Double.Parse(speed);
 
             _context.Add(newPlace);
             _context.SaveChanges();
