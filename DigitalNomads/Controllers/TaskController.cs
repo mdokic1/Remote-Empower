@@ -9,6 +9,7 @@ using DigitalNomads.Models.Account;
 using DigitalNomads.Entities;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DigitalNomads.Controllers
 {
@@ -30,9 +31,9 @@ namespace DigitalNomads.Controllers
 
         public async Task<IActionResult> AllTasks()
         {
-            TaskList list = await GetAllTasksByIdAsync();
+            TaskList lists = await GetAllTasksByIdAsync();
 
-            return View(list);
+            return View(lists);
         }
 
         public async Task<int> GetAccountIdByUserIdAsync(string UserId)
@@ -54,25 +55,31 @@ namespace DigitalNomads.Controllers
 
         public async Task<TaskList> GetAllTasksByIdAsync ()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int accId = await GetAccountIdByUserIdAsync(userId);
+            //var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //int accId = await GetAccountIdByUserIdAsync(userId);
 
-            IList<TaskRes> res = await _dbContext.Tasks
-                .Where(t => t.UserId == accId)
-                .Select(t => new TaskRes
-                {
-                    Id = t.Id,
-                    Title = t.Title,
-                    IsFinished = t.IsFinished,
-                    Deadline = t.Deadline,
-                    Description = t.Description,
-                    UserId = t.UserId
-                }).ToListAsync();
+            //IList<TaskRes> res = await _dbContext.Tasks
+            //    .Where(t => t.UserId == accId)
+            //    .Select(t => new TaskRes
+            //    {
+            //        Id = t.Id,
+            //        Title = t.Title,
+            //        IsFinished = t.IsFinished,
+            //        Deadline = t.Deadline,
+            //        Description = t.Description,
+            //        UserId = t.UserId
+            //    }).ToListAsync();
 
-            return new TaskList { Tasks = res };
+            IList<TaskRes> finished = await GetAllFinishedTasksByIdAsync();
+            IList<TaskRes> unfinished = await GetAllUnfinishedTasksByIdAsync();
+
+            return new TaskList {
+                FinishedTasks = finished,
+                UnfinishedTasks = unfinished
+            };
         }
 
-        public async Task<TaskList> GetAllFinishedTasksByIdAsync()
+        public async Task<IList<TaskRes>> GetAllFinishedTasksByIdAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             int accId = await GetAccountIdByUserIdAsync(userId);
@@ -88,13 +95,11 @@ namespace DigitalNomads.Controllers
                     Description = t.Description,
                     UserId = t.UserId
                 }).ToListAsync();
-            return new TaskList
-            {
-                Tasks = res
-            };
+
+            return res;
         }
 
-        public async Task<TaskList> GetAllUnfinishedTasksByIdAsync()
+        public async Task<IList<TaskRes>> GetAllUnfinishedTasksByIdAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             int accId = await GetAccountIdByUserIdAsync(userId);
@@ -110,10 +115,10 @@ namespace DigitalNomads.Controllers
                     Description = t.Description,
                     UserId = t.UserId
                 }).ToListAsync();
-            return new TaskList
-            {
-                Tasks = res
-            };
+
+            var sorted = res.OrderBy(t => t.Deadline).ToList();
+
+            return sorted;
         }
 
         public async Task DeleteTaskAsync(int Id)
@@ -132,5 +137,53 @@ namespace DigitalNomads.Controllers
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<IActionResult> ChangeTaskType (TaskRes task)
+        {
+            Duty taskDb = await _dbContext.Tasks
+                .Where(t => t.Id == task.Id)
+                .FirstOrDefaultAsync();
+
+
+            taskDb.IsFinished = true;
+
+            _dbContext.Tasks.Update(taskDb);
+            _dbContext.SaveChanges();
+
+            TaskList lists = await GetAllTasksByIdAsync();
+
+            return View("AllTasks", lists);
+        }
+
+        public async Task<IActionResult> AddNewTask (string Title, string Description, DateTime DeadlineDate, DateTime DeadlineTime, int UserId)
+        {
+            DateTime deadline = new DateTime(DeadlineDate.Year, DeadlineDate.Month, DeadlineDate.Day, DeadlineTime.Hour, DeadlineTime.Minute, DeadlineTime.Second);
+            Duty newTask = new Duty();
+            newTask.Title = Title;
+            newTask.IsFinished = false;
+            newTask.Deadline = deadline;
+            newTask.Description = Description;
+            newTask.UserId = UserId;
+
+            _dbContext.Add(newTask);
+            _dbContext.SaveChanges();
+
+            TaskList lists = await GetAllTasksByIdAsync();
+
+            return View("AllTasks", lists);
+        }
+
+        public async Task<IActionResult> RemoveTask(TaskRes task)
+        {
+            Duty taskDb = await _dbContext.Tasks
+                .Where(t => t.Id == task.Id)
+                .FirstOrDefaultAsync();
+
+            _dbContext.Tasks.Remove(taskDb);
+            _dbContext.SaveChanges();
+
+            TaskList lists = await GetAllTasksByIdAsync();
+
+            return View("AllTasks", lists);
+        }
     }
 }

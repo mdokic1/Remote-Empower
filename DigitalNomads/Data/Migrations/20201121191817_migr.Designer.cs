@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DigitalNomads.Data.Migrations
+namespace DigitalNomads.Migrations
 {
     [DbContext(typeof(CtrlAltDefeatDbContext))]
-    [Migration("20201120180848_initial")]
-    partial class initial
+    [Migration("20201121191817_migr")]
+    partial class migr
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,35 @@ namespace DigitalNomads.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("DigitalNomads.Entities.Duty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Deadline")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("DigitalNomads.Entities.Meditation", b =>
@@ -139,35 +168,6 @@ namespace DigitalNomads.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Places");
-                });
-
-            modelBuilder.Entity("DigitalNomads.Entities.Task", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Deadline")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsFinished")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("DigitalNomads.Entities.Team", b =>
@@ -398,20 +398,20 @@ namespace DigitalNomads.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("DigitalNomads.Entities.Duty", b =>
+                {
+                    b.HasOne("DigitalNomads.Entities.Account", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DigitalNomads.Entities.MeditationWords", b =>
                 {
                     b.HasOne("DigitalNomads.Entities.Meditation", "Meditation")
                         .WithMany()
                         .HasForeignKey("MeditationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DigitalNomads.Entities.Task", b =>
-                {
-                    b.HasOne("DigitalNomads.Entities.Account", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

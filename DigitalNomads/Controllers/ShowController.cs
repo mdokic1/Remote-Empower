@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalNomads.Controllers
 {
-    public class Show : Controller
+    public class ShowController : Controller
     {
         public IActionResult ShowCards()
         {
