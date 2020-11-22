@@ -1,0 +1,51 @@
+﻿<html>
+<head>
+
+</head>
+<body style="background-color:#3a554c">
+    <h1 style="margin-left:250px">Check if you should take a break and meditate</h1>
+    <form asp-controller="Statistics" asp-action="CalculateMeditationNeed" method="post" style="margin:auto">
+        <table>
+            <tr>
+                <td>How many hours did you sleep last night? </td>
+                <td><input type="number" name="HoursOfSleep" size="9" min="1" max="9" /></td>
+            </tr>
+            <input type="hidden" id="Day" name="Day" value='@DateTime.Now.DayOfWeek' />
+            <tr>
+                <td>How many hours ago did you take a break?</td>
+                <td><input type="number" name="HoursFromPreviousBreak" size="9" min="1" max="9" /></td>
+            </tr>
+            <tr>
+                <td>Evaluate your current mood.</td>
+                <td><input type="number" name="CurrentMood" size="3" min="1" max="3" /></td>
+            </tr>
+            <tr>
+                <td>How many hours ago did you meditate?</td>
+                <td><input type="number" name="HoursFromPreviousMeditation" size="9" min="1" max="9" /></td>
+            </tr>
+            <button type="submit" style="margin:auto">Check</button>
+        </table>
+    </form>
+</body>
+</html>
+    
+<style>
+    h1, td:first-child {
+        color:whitesmoke;
+
+    }
+
+    table {
+        height:200px;
+    }
+
+    table{
+        margin:auto;
+        padding-top:200px;
+    }
+
+    input[type=number] {
+        border-radius:10px;
+        
+    }
+</style>
