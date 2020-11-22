@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigitalNomads.Migrations
 {
     [DbContext(typeof(CtrlAltDefeatDbContext))]
-    [Migration("20201121191817_migr")]
-    partial class migr
+    [Migration("20201122053825_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,9 @@ namespace DigitalNomads.Migrations
 
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("InternetSpeed")
+                        .HasColumnType("int");
 
                     b.Property<double>("Lat")
                         .HasColumnType("float");

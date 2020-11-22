@@ -13,8 +13,9 @@ namespace DigitalNomads.Models.Account
         public string LastName { get; set; }
         public double Lat { get; set; }
         public double Long { get; set; }
-
+        public string TeamName { get; set; }
         public int TeamId { get; set; }
+
 
     }
 }
