@@ -8,7 +8,7 @@ namespace DigitalNomads.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult Index()
+        public IActionResult AccountDetails()
         {
             return View();
         }
