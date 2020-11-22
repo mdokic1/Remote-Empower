@@ -20,3 +20,5 @@ The application solves the problem of finding the ideal place for work, allows y
 * HTML
 * CSS
 * Azure Machine Learning Tool
+* JavaScript Map API Geocoding API
+
