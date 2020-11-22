@@ -151,6 +151,9 @@ namespace DigitalNomads.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InternetSpeed")
+                        .HasColumnType("int");
+
                     b.Property<double>("Lat")
                         .HasColumnType("float");
 

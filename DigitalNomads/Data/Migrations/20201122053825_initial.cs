@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DigitalNomads.Migrations
 {
-    public partial class migr : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -85,7 +85,8 @@ namespace DigitalNomads.Migrations
                     Lat = table.Column<double>(nullable: false),
                     Long = table.Column<double>(nullable: false),
                     Start = table.Column<DateTime>(nullable: false),
-                    End = table.Column<DateTime>(nullable: false)
+                    End = table.Column<DateTime>(nullable: false),
+                    InternetSpeed = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
