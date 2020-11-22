@@ -13,9 +13,29 @@ namespace DigitalNomads.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult AccountDetails()
+        public async Task<IActionResult> AccountDetailsAsync()
         {
-            return View();
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int accId = await GetAccountIdByUserIdAsync(userId);
+
+            Account account = await _dbContext.Accounts
+                .Where(a => a.Id == accId)
+               .FirstOrDefaultAsync();
+
+            Team team = await _dbContext.Teams
+            .Where(t => t.Id == account.TeamId)
+            .FirstOrDefaultAsync();
+
+            AccountRes res = new AccountRes
+            {
+                FirstName = account.FirstName,
+                LastName = account.LastName,
+                TeamName = team.Name
+            };
+
+
+
+            return View(res);
         }
 
         private CtrlAltDefeatDbContext _dbContext;
@@ -64,7 +84,7 @@ namespace DigitalNomads.Controllers
 
             await _dbContext.SaveChangesAsync();
 
-            return View();
+            return RedirectToAction("ShowCards", "Show");
         }
 
         public async Task<int> GetAccountIdByUserIdAsync(string UserId)

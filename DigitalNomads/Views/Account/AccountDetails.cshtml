@@ -115,24 +115,26 @@
         <div class="column">
             <h1>Tell us about yourself</h1>
             <br />
-            <div class="form__group">
-                <input type="text" class="form__input" id="FirstName" name="FirstName" placeholder="First name" required="" />
-                <label for="name" class="form__label">First name</label>
-            </div>
-            <div class="form__group">
-                <input type="text" class="form__input" id="LastName" name="LastName" placeholder="Last name" required="" />
-                <label for="lastName" class="form__label">Last name</label>
-            </div>
-            <div class="form__group">
-                <input type="text" class="form__input" id="TeamName" name="TeamName" placeholder="Team name" required="" />
-                <label for="teamName" class="form__label">Team name</label>
-            </div>
-            <div class="button" type="submit">
-                <div class="container">
-                    <div class="tick">
-                    </div>
+            <form asp-controller="Account" asp-action="SaveAccountChanges" method="post">
+                <div class="form__group">
+                    <input type="text" class="form__input" id="FirstName" name="FirstName" placeholder="First name" required="" value="@Model.FirstName" />
+                    <label for="name" class="form__label">First name</label>
                 </div>
-            </div>
+                <div class="form__group">
+                    <input type="text" class="form__input" id="LastName" name="LastName" placeholder="Last name" required="" value="@Model.LastName" />
+                    <label for="lastName" class="form__label">Last name</label>
+                </div>
+                <div class="form__group">
+                    <input type="text" class="form__input" id="TeamName" name="TeamName" placeholder="Team name" required="" value="@Model.TeamName" />
+                    <label for="teamName" class="form__label">Team name</label>
+                </div>
+                <button type="submit" class="button">
+                    <div class="container">
+                        <div class="tick">
+                        </div>
+                    </div>
+                </button>
+               </form>
         </div>
     </div>
 
