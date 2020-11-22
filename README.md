@@ -11,7 +11,7 @@ The application solves the problem of finding the ideal place for work, allows y
 * Meditation options
 * Finding perfect place for work
 * Insight into the location of team members
-* An trained model based on our own data
+* A trained model based on our own data
 
 ## Tech
 * .NetCore
